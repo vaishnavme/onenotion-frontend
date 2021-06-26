@@ -27,7 +27,12 @@ export const noteSlice = createSlice({
             }
         ]
     },
-    reducers: {}
+    reducers: {
+        saveNewNote: (state, action) => {
+            state.notes.push(action.payload);
+        }
+    }
 })
 
+export const { saveNewNote } = noteSlice.actions;
 export default noteSlice.reducer;
