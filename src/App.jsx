@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Routes, Route } from "react-router";
 import { NewNote, AllNotes} from "./features";
 import { Navbar } from "./components";
+import "./App.css";
 
 function App() {
   return (
