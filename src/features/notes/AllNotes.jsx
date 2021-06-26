@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 
-export default function Notions() {
+export default function AllNotes() {
     const allNotions = useSelector((state) => state.notion.notes)
 
     return (
