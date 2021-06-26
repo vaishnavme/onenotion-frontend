@@ -5,15 +5,15 @@ import { DropdownMenu } from "../../components";
 
 export default function NewNote() {
     const [title, setTitle] = useState("" || "Untitled");
+    const [currentLabel, setCurrentLabel] = useState("No Label");
     const [article, setArticle] = useState("");
-    const [tags, setTags] = useState("");
+
     const dispatch = useDispatch();
 
     const newPostHandler = () => {
         const newNote = {
             id: "note78",
             label: "Test",
-            tags: tags.split(","),
             isBookmarked: false,
             title: title,
             article: article
@@ -24,7 +24,6 @@ export default function NewNote() {
     const clearNote = () => {
         setTitle("");
         setArticle("");
-        setTags("");
     }
 
     return (
@@ -54,9 +53,11 @@ export default function NewNote() {
                         {title==="" ? "" : null}
                 </div>
 
-                <div className="my-6">
-                    <input className="p-2" type="text" value={tags} placeholder="add tags... work, idea" onChange={(e) => setTags(e.target.value)}/>
-                    <DropdownMenu/>
+                <div className="my-4">
+                    <DropdownMenu
+                        currentLabel={currentLabel}
+                        setCurrentLabel={setCurrentLabel}
+                    />
                 </div>
 
                 <div
