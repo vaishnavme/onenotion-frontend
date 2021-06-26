@@ -6,7 +6,7 @@ export default function AllNotes() {
     return (
         <div>
             <h1 className="text-2xl">Your Notes</h1>
-            <div className="grid grid-flow-col grid-flow-row auto-fr gap-12 my-8">
+            <div className="notesGrid my-4">
                 {
                     allNotions.notes.map((note) => (
                         <div 
