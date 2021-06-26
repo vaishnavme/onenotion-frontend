@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-export const DropdownMenu = () => {
-    const [currentLabel, setCurrentLabel] = useState("No Label")
+export const DropdownMenu = ({
+    currentLabel, setCurrentLabel, allLabel
+}) => {
     const allNotions = useSelector((state) => state.notion.notes);
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
 
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
     const toggleDropdown = () => setDropdownVisible(prevState => !prevState)
 
     return (
@@ -17,18 +18,18 @@ export const DropdownMenu = () => {
             </div>
             <div className={`absolute z-10 bg-white shadow-md w-64 rounded p-3 my-1 ${isDropdownVisible ? "block": "hidden"}`}>
                 <div>
-                    {
-                        allNotions.map((noteLabel) => (
-                            <button className="flex justify-between items-center w-full my-1">
-                                {noteLabel.label}
-                                <i className="text-xl bg-gray-100 px-1 rounded-full	 bx bx-x"></i>
-                            </button>
+                    {/* {
+                        allLabel.map((noteLabel, index) => (
+                            <div key={index} className="flex justify-between items-center w-full my-1 focus:ring-0">
+                                <button>{noteLabel}</button>
+                                <button onClick={() => removeLabel(noteLabel)}><i className="text-xl bg-gray-100 px-1 rounded-full	 bx bx-x"></i></button>
+                            </div>
                         ))
-                    }
+                    } */}
                 </div>
                 <div className="my-1 flex justify-between items-center">
                     <input className="p-1 bg-gray-50 rounded" type="text" placeholder="Add label"/>
-                    <button><i className='bx bx-plus text-xl bg-gray-100 px-1 rounded-full' ></i></button>
+                    <button><i className='bx bx-plus text-xl bg-gray-100 px-1 rounded' ></i></button>
                 </div>
             </div>
         </div>
