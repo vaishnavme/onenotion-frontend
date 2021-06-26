@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux"
+import { useSelector } from "react-redux";
 
 export default function AllNotes() {
     const allNotions = useSelector((state) => state.notion)
@@ -13,7 +13,6 @@ export default function AllNotes() {
                             className="bg-gray-50 rounded-md p-4 hover:shadow-lg transition-all duration-300 ease"
                             key={note.id}>
                             <div className="text-lg font-medium mb-2">{note.title}</div>
-                            <span className="text-gray-600">{note.label}</span>
                             <div className="border-b-2 my-2"></div>
                             <p>{note.article}</p>
                         </div>
