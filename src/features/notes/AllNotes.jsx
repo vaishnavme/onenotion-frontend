@@ -10,11 +10,11 @@ export default function AllNotes() {
                 {
                     allNotions.notes.map((note) => (
                         <div 
-                            className="bg-gray-50 rounded-md p-4 hover:shadow-lg transition-all duration-300 ease"
+                            className="bg-gray-800 rounded-md p-4 hover:shadow-lg transition-all duration-300 ease"
                             key={note.id}>
                             <div className="text-lg font-medium mb-2">{note.title}</div>
                             <div className="border-b-2 my-2"></div>
-                            <p>{note.article}</p>
+                            <p className="leading-relaxed">{note.article}</p>
                         </div>
                     ))
                 }

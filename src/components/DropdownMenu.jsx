@@ -12,11 +12,11 @@ export const DropdownMenu = ({
     return (
         <div className="relative">
             <div>
-                <button onClick={toggleDropdown} className="flex items-center px-2 py-1 rounded bg-gray-50">
+                <button onClick={toggleDropdown} className="flex items-center px-2 py-1 rounded bg-gray-800 text-white">
                     {currentLabel} <i className='ml-2 bx bxs-chevron-down'></i>
                 </button>
             </div>
-            <div className={`absolute z-10 bg-white shadow-md w-64 rounded p-3 my-1 ${isDropdownVisible ? "block": "hidden"}`}>
+            <div className={`absolute z-10 bg-gray-800 shadow-md w-64 rounded p-3 my-1 ${isDropdownVisible ? "block": "hidden"}`}>
                 <div>
                     {/* {
                         allLabel.map((noteLabel, index) => (
@@ -28,8 +28,8 @@ export const DropdownMenu = ({
                     } */}
                 </div>
                 <div className="my-1 flex justify-between items-center">
-                    <input className="p-1 bg-gray-50 rounded" type="text" placeholder="Add label"/>
-                    <button><i className='bx bx-plus text-xl bg-gray-100 px-1 rounded' ></i></button>
+                    <input className="p-1 bg-gray-700 rounded" type="text" placeholder="Add label"/>
+                    <button><i className='bx bx-plus text-xl bg-gray-700 text-white px-1 rounded' ></i></button>
                 </div>
             </div>
         </div>

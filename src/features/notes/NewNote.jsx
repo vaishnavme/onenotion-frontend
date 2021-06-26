@@ -34,10 +34,10 @@ export default function NewNote() {
                 </div>
                 <div>
                     <ul className="flex">
-                        <li className="mx-2 md:hover:bg-gray-100 rounded">
+                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
                             <button onClick={() => newPostHandler()} className="py-1 px-2">Save</button>
                         </li>
-                        <li className="mx-2 md:hover:bg-gray-100 rounded">
+                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
                             <button onClick={() => clearNote()} className="py-1 px-2">Clear</button>
                         </li>
                     </ul>
@@ -45,7 +45,7 @@ export default function NewNote() {
             </div>
             <div className="m-auto w-full max-w-3xl">
                 <div
-                    className="p-2 text-3xl font-bold rounded bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
+                    className="p-2 text-3xl font-bold rounded bg-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                     contentEditable="plaintext-only"
                     suppressContentEditableWarning={true}
                     placeholder="Untitled"
@@ -61,7 +61,7 @@ export default function NewNote() {
                 </div>
 
                 <div
-                    className="my-2 p-2 bg-gray-50 rounded focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
+                    className="my-2 p-2 bg-gray-800 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                     contentEditable="plaintext-only"
                     suppressContentEditableWarning={true}
                     placeholder="Write your thoughts..."
