@@ -37,12 +37,12 @@ export const Navbar = () => {
                         </NavLink>
 
                         <div className="grid gap-y-10 mt-32">
-                            <div className="grid gap-y-6">
-                                <NavLink to="/" activeStyle={activeColor} className="flex items-center text-gray-500 p-1" end>
+                            <div className="grid gap-y-6" onClick={() => toggleBtnHandler()}>
+                                <NavLink to="/new" activeStyle={activeColor} className="flex items-center text-gray-500 p-1" end>
                                     <i className="bx bx-pencil text-2xl p-1"></i>
                                     <span className="text-base whitespace-nowrap ml-4">Create New</span>
                                 </NavLink>
-                                <NavLink to="/new" activeStyle={activeColor} className="flex items-center text-gray-500 p-1" end>
+                                <NavLink to="/" activeStyle={activeColor} className="flex items-center text-gray-500 p-1" end>
                                     <i className="bx bx-notepad text-2xl p-1"></i>
                                     <span className="text-base whitespace-nowrap ml-4">All Notes</span>
                                 </NavLink>

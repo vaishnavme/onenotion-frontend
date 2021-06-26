@@ -9,8 +9,8 @@ function App() {
       <Navbar/>
       <div className="md:ml-52 p-4">
         <Routes>
-          <Route to="/" element={<NewNote/>}/>
-          <Route to="/new" element={<Notions/>}/>
+          <Route to="/" element={<Notions/>}/>
+          <Route to="/new" element={<NewNote/>}/>
         </Routes>
       </div>
     </Fragment>
