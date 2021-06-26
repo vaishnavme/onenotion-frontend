@@ -7,7 +7,7 @@ function App() {
   return (
     <Fragment>
       <Navbar/>
-      <div className="md:ml-52 p-4">
+      <div className="mt-16 p-4 md:ml-52 md:mt-0">
         <Routes>
           <Route path="/" element={<AllNotes/>}/>
           <Route path="/new" element={<NewNote/>}/>
