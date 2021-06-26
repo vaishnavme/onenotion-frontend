@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
+import { DropdownMenu } from "../../components";
 
 export default function NewNote() {
     const [title, setTitle] = useState("" || "Untitled");
@@ -55,7 +56,7 @@ export default function NewNote() {
 
                 <div className="my-6">
                     <input className="p-2" type="text" value={tags} placeholder="add tags... work, idea" onChange={(e) => setTags(e.target.value)}/>
-                    
+                    <DropdownMenu/>
                 </div>
 
                 <div
