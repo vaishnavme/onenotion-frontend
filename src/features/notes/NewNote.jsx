@@ -1,4 +1,5 @@
 import { useState } from "react";
+import EditorJS from '@editorjs/editorjs';
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
 import { DropdownMenu } from "../../components";
