@@ -1,14 +1,12 @@
 import { useState } from "react";
-import EditorJS from '@editorjs/editorjs';
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
 import { DropdownMenu } from "../../components";
 
 export default function NewNote() {
     const [title, setTitle] = useState("" || "Untitled");
-    const [currentLabel, setCurrentLabel] = useState("No Label");
     const [article, setArticle] = useState("");
-
+    
     const dispatch = useDispatch();
 
     const newPostHandler = () => {
@@ -19,7 +17,7 @@ export default function NewNote() {
             title: title,
             article: article
         }
-        console.log("new: ", newNote);
+        dispatch(saveNewNote(newNote))
     }
 
     const clearNote = () => {
@@ -46,7 +44,7 @@ export default function NewNote() {
             </div>
             <div className="m-auto w-full max-w-3xl">
                 <div
-                    className="p-2 text-3xl font-bold rounded bg-gray-800 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
+                    className="p-2 text-3xl font-bold rounded bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                     contentEditable="plaintext-only"
                     suppressContentEditableWarning={true}
                     placeholder="Untitled"
@@ -54,18 +52,12 @@ export default function NewNote() {
                         {title==="" ? "" : null}
                 </div>
 
-                <div className="my-4">
-                    <DropdownMenu
-                        currentLabel={currentLabel}
-                        setCurrentLabel={setCurrentLabel}
-                    />
-                </div>
-
                 <div
-                    className="my-2 p-2 bg-gray-800 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
+                    className="my-3 p-1 bg-gray-50 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                     contentEditable="plaintext-only"
                     suppressContentEditableWarning={true}
                     placeholder="Write your thoughts..."
+                    onFocus
                     onInputCapture={(e) => setArticle(e.target.innerText)}>
                         {article==="" ? "" : null}
                 </div>
