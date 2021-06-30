@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Routes, Route } from "react-router";
-import { NewNote, AllNotes} from "./features";
+import { NewNote, AllNotes, Login, SignUp} from "./features";
 import { Navbar } from "./components";
 import "./App.css";
 
@@ -13,6 +13,8 @@ function App() {
           <Route path="/" element={<AllNotes/>}/>
           <Route path="/create" element={<NewNote/>}/>
           <Route path="/edit-page/:noteId" element={<NewNote/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
         </Routes>
       </div>
     </Fragment>
