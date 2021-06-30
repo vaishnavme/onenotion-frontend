@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
 import { EditorContainer, PreviewContainer } from "../../components";
@@ -10,6 +11,8 @@ export default function NewNote() {
     
     const dispatch = useDispatch();
 
+    const { noteId } = useParams();
+
     const newPostHandler = () => {
         const newNote = {
             id: "note78",
@@ -18,7 +21,7 @@ export default function NewNote() {
             title: title,
             article: article
         }
-        console.log(newNote)
+        dispatch(saveNewNote(newNote));
     }
 
     const previewHandler = () => setPreviewVisible((prevState) => !prevState);

@@ -11,7 +11,8 @@ function App() {
       <div className="mt-16 p-4 md:ml-52 md:mt-0">
         <Routes>
           <Route path="/" element={<AllNotes/>}/>
-          <Route path="/new" element={<NewNote/>}/>
+          <Route path="/create" element={<NewNote/>}/>
+          <Route path="/edit-page/:noteId" element={<NewNote/>}/>
         </Routes>
       </div>
     </Fragment>

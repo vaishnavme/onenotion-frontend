@@ -17,7 +17,7 @@ export const Navbar = () => {
 
     return (
         <React.Fragment>
-            <header className="fixed top-0 left-0 w-full shadow bg-gray-50 px-4 z-10 md:hidden">
+            <header className="fixed top-0 left-0 w-full shadow bg-white px-4 z-10 md:hidden">
                 <div className="flex items-center justify-between h-16">
                     <NavLink to="/" className="text-2xl md:ml-20 md:hidden">
                         One Notion
@@ -38,7 +38,7 @@ export const Navbar = () => {
 
                         <div className="grid gap-y-10 mt-32">
                             <div className="grid gap-y-6">
-                                <NavLink to="/new" activeStyle={activeColor} className="flex items-center p-1" end>
+                                <NavLink to="/create" activeStyle={activeColor} className="flex items-center p-1" end>
                                     <i className="bx bx-pencil text-2xl p-1"></i>
                                     <span className="text-base whitespace-nowrap ml-4">Create New</span>
                                 </NavLink>
