@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { PreviewContainer } from "../../components";
 
 export default function AllNotes() {
     const allNotions = useSelector((state) => state.notion)
@@ -17,13 +19,12 @@ export default function AllNotes() {
             <div className="notesGrid my-4">
                 {
                     allNotions.notes.map((note) => (
-                        <div 
-                            className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease"
-                            key={note.id}>
-                            <div className="text-lg font-medium mb-2">{note.title}</div>
-                            <div className="border-b-2 my-2"></div>
-                            <p className="leading-relaxed">{note.article}</p>
-                        </div>
+                        <Link to={`/edit-page/${note.id}`} key={note.id}>
+                            <div 
+                                className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease">
+                                <PreviewContainer title={note.title} article={note.article}/>
+                            </div>
+                        </Link>
                     ))
                 }
             </div>
