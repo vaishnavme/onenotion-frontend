@@ -17,3 +17,10 @@ img {
     margin: 2rem auto;
     border-radius: 0.4rem;
 }
+pre {
+    color: #ffffff;
+    background-color: #1f2937;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    margin: 2rem auto;
+}
