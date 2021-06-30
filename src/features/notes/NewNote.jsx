@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
-import { DropdownMenu } from "../../components";
+import { EditorContainer, PreviewContainer } from "../../components";
 
 export default function NewNote() {
+    const [isPreviewVisible, setPreviewVisible] = useState();
     const [title, setTitle] = useState("" || "Untitled");
     const [article, setArticle] = useState("");
     
@@ -17,8 +18,10 @@ export default function NewNote() {
             title: title,
             article: article
         }
-        dispatch(saveNewNote(newNote))
+        console.log(newNote)
     }
+
+    const previewHandler = () => setPreviewVisible((prevState) => !prevState);
 
     const clearNote = () => {
         setTitle("");
@@ -34,6 +37,9 @@ export default function NewNote() {
                 <div>
                     <ul className="flex">
                         <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
+                            <button onClick={previewHandler} className="py-1 px-2">Preview</button>
+                        </li>
+                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
                             <button onClick={() => newPostHandler()} className="py-1 px-2">Save</button>
                         </li>
                         <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
@@ -43,25 +49,24 @@ export default function NewNote() {
                 </div>
             </div>
             <div className="m-auto w-full max-w-3xl">
-                <div
-                    className="p-2 text-3xl font-bold rounded bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
-                    contentEditable="plaintext-only"
-                    suppressContentEditableWarning={true}
-                    placeholder="Untitled"
-                    onInputCapture={(e) => setTitle(e.target.innerText)}>
-                        {title==="" ? "" : null}
-                </div>
-
-                <div
-                    className="my-3 p-1 bg-gray-50 rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
-                    contentEditable="plaintext-only"
-                    suppressContentEditableWarning={true}
-                    placeholder="Write your thoughts..."
-                    onFocus
-                    onInputCapture={(e) => setArticle(e.target.innerText)}>
-                        {article==="" ? "" : null}
-                </div>
+                {
+                    isPreviewVisible ? 
+                    <PreviewContainer
+                        title={title}
+                        article={article}
+                    />
+                    :
+                    <EditorContainer
+                        title={title}
+                        article={article}
+                        setTitle={setTitle}
+                        setArticle={setArticle}
+                    />
+                }
             </div>
         </div>
     )
 }
+
+
+
