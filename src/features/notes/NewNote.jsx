@@ -12,17 +12,15 @@ export default function NewNote() {
 
     const { noteId } = useParams();
 
-    const syncData = getTimeandData();
-    console.log(syncData)
-
-    console.log(noteId);
+    console.log(getTimeandData(),);
 
     const newPostHandler = () => {
         const newNote = {
             id: "note78",
+            title: title,
+            date: getTimeandData(),
             label: "Test",
             isBookmarked: false,
-            title: title,
             article: article
         }
         dispatch(saveNewNote(newNote));
