@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logInUserWithCredentials } from "./authSlice";
+import { logInUserWithCredentials, resetStatus } from "./authSlice";
 
 export default function Login() {
-    const { status, error, isAuthenticated } = useSelector((state) => state.auth);
+    const { status, isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -20,14 +20,16 @@ export default function Login() {
     }
 
     useEffect(() => {
-        isAuthenticated && navigate("/")
-    },[isAuthenticated, navigate])
+        dispatch(resetStatus());
+        isAuthenticated && navigate("/");
+        // eslint-disable-next-line
+      }, [isAuthenticated, navigate]);
 
     const background = {
         backgroundImage: `url("https://images.unsplash.com/photo-1624375147958-678d727cc0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")`,
-        backgroundSize: "100%",
         height: "100vh",
-        backgroundRepeat: "no-reapeat"
+        backgroundSize: 'cover',
+        overflow: 'hidden'
     }
 
     return (
@@ -42,7 +44,7 @@ export default function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             type="text" 
                             autoFocus id="username" 
-                            className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" 
+                            className="rounded-sm font-normal px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" 
                             placeholder="Email" />
                     </div>
                     <div className="my-5 text-sm">
@@ -58,7 +60,7 @@ export default function Login() {
                     <button 
                         onClick={(e) => {e.preventDefault(); logInHandler();}}
                         className="block text-center text-white bg-gray-800 p-3 duration-300 rounded-sm hover:bg-black w-full">
-                            Login
+                            {status === "loading" ? "Loading..." : "Login"}
                     </button>
                 </form>
                 <p className="mt-12 text-sm text-center font-normal text-gray-900"> Don't have an account? <Link to="/signup" className="text-black font-medium"> Create One </Link>  </p> 

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../features/auth/authSlice";
 
 export const Navbar = () => {
     const [toggle, setToggle] = useState(false);
+    const dispatch = useDispatch();
     
     const activeColor = {
         color: "#000000",
@@ -14,6 +17,10 @@ export const Navbar = () => {
     const toggleBtnHandler = () => setToggle(
         (prevState) => !prevState
     )
+
+    const logOutHandler = () => {
+        dispatch(logOutUser())
+    }
 
     return (
         <React.Fragment>
@@ -57,10 +64,10 @@ export const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    <NavLink to="/" className="flex items-center p-1 rounded-lg hover:text-black hover:bg-white hover:shadow-md">
+                    <button onClick={logOutHandler} className="flex items-center p-1 rounded-lg hover:text-black hover:bg-white hover:shadow-md">
                         <i className="bx bx-log-out text-2xl p-1"></i>
                         <span className="text-base whitespace-nowrap ml-4">Log Out</span>
-                    </NavLink>
+                    </button>
                 </nav>
             </div>
         </React.Fragment>

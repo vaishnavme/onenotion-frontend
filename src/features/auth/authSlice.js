@@ -29,7 +29,7 @@ export const authSlice = createSlice({
     initialState: {
         authUserToken: JSON.parse(localStorage?.getItem("authUserToken")) || null,
         authUser: JSON.parse(localStorage?.getItem("authUser")) || null,
-        isAuthenticated:  JSON.parse(localStorage?.getItem("isAuthenticated")) || null,
+        isAuthenticated: JSON.parse(localStorage?.getItem("isAuthenticated")) || null,
         status: JSON.parse(localStorage?.getItem("authUserToken"))
                 ? "success"
                 : "idle",
@@ -46,6 +46,9 @@ export const authSlice = createSlice({
                 isAuthenticated: null,
                 status: "idle"
             }
+        },
+        resetStatus: (state) => {
+            state.status = "idle"
         }
     },
     extraReducers: {
@@ -57,9 +60,10 @@ export const authSlice = createSlice({
             state.authUser = user;
             state.authUserToken = token;
             state.status = "success";
+            state.isAuthenticated = true;
+            localStorage.setItem("isAuthenticated", JSON.stringify(true));
             localStorage.setItem("authUser", JSON.stringify(user));
             localStorage.setItem("authUserToken", JSON.stringify(token));
-            localStorage.setItem("isAuthenticated", JSON.stringify(true));
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         },
         [logInUserWithCredentials.rejected]: (state) => {
@@ -74,6 +78,7 @@ export const authSlice = createSlice({
             state.authUser = user;
             state.authUserToken = token;
             state.status = "success";
+            state.isAuthenticated = true;
             localStorage.setItem("authUser", JSON.stringify(user));
             localStorage.setItem("authUserToken", JSON.stringify(token));
             localStorage.setItem("isAuthenticated", JSON.stringify(true));
@@ -85,5 +90,5 @@ export const authSlice = createSlice({
     }
 })
 
-export const { logOutUser } = authSlice.actions;
+export const { logOutUser, resetStatus } = authSlice.actions;
 export default authSlice.reducer;
