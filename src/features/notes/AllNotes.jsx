@@ -30,8 +30,9 @@ export default function AllNotes() {
                     allNotions.notes.map((note) => (
                         <Link to={`/edit-page/${note._id}`} key={note._id}>
                             <div 
-                                className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2 md:border-0">
-                                <PreviewContainer title={note.title} article={note.article}/>
+                                className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2">
+                                <div className="text-3xl font-bold my-3 note-title">{note.title}</div>
+                                <div className="note-article">{note.article}</div>
                             </div>
                         </Link>
                     ))
