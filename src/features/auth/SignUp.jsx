@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUpUserWithCredentials } from "./authSlice"
 import { emailRegex } from "../../components";
 
 export default function SignUp() {
@@ -9,6 +11,8 @@ export default function SignUp() {
     const [confirmPwd, setConfirmPwd] = useState("");
     const [isValid, setValid] = useState(false);
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         if(name && emailRegex.test(email) && password && confirmPwd) {
             setValid(true)
@@ -17,7 +21,7 @@ export default function SignUp() {
 
     const signupHandler = () => {
         if(isValid) {
-
+            dispatch(signUpUserWithCredentials({name, email, password}))
         } 
     }
    
@@ -57,11 +61,11 @@ export default function SignUp() {
                             placeholder="Password" />
                     </div>
                     <div className="my-5 text-sm">
-                        <label htmlFor="password" className="block text-black">Confirm Password</label>
+                        <label htmlFor="confirmPwd" className="block text-black">Confirm Password</label>
                         <input 
                             onChange={(e) => setConfirmPwd(e.target.value)}
                             type="password" 
-                            id="password" 
+                            id="confirmPwd" 
                             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" 
                             required={true} 
                             placeholder="Confirm Password" />

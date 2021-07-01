@@ -5,5 +5,12 @@ export const logInUser = async({email, password}) => {
             email, 
             password
     });
-    return response
+    return response;
+}
+
+export const signUpUser = async ({name, email, password}) => {
+    const response = await axios.post(`/user/signup`, {
+        name, email, password
+    })
+    return response;
 }
