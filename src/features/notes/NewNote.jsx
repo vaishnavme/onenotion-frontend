@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { saveNewNote } from "./noteSlice";
@@ -6,7 +6,7 @@ import { EditorContainer, PreviewContainer, getTimeandData } from "../../compone
 
 export default function NewNote() {
     const [isPreviewVisible, setPreviewVisible] = useState();
-    const [title, setTitle] = useState("" || "Untitled");
+    const [title, setTitle] = useState("");
     const [article, setArticle] = useState("");
     const dispatch = useDispatch();
 
@@ -39,6 +39,11 @@ export default function NewNote() {
                 <div>
                     <div className="text-lg hidden md:block">{title.substring(0, 25) || "Untitled"}</div>
                 </div>
+                
+                <div>
+                    <span className="text-sm font-medium">{getTimeandData()}</span>
+                </div>
+    
                 <div>
                     <ul className="flex">
                         <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">

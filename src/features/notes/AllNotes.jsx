@@ -1,10 +1,19 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserNotes } from "./noteSlice";
 import { PreviewContainer } from "../../components";
 
 export default function AllNotes() {
     const allNotions = useSelector((state) => state.notion)
+    const dispatch = useDispatch();
+    const { status, isAuthenticated, authUserToken } = useSelector((state) => state.auth);
+    console.log(isAuthenticated)
 
+    useEffect(() => {
+        isAuthenticated && dispatch(getUserNotes(authUserToken))
+    }, [])
+    
     return (
         <div>
             <div className="md:flex md:justify-between md:items-center">
@@ -19,7 +28,7 @@ export default function AllNotes() {
             <div className="notesGrid my-4">
                 {
                     allNotions.notes.map((note) => (
-                        <Link to={`/edit-page/${note.id}`} key={note.id}>
+                        <Link to={`/edit-page/${note._id}`} key={note._id}>
                             <div 
                                 className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2 md:border-0">
                                 <PreviewContainer title={note.title} article={note.article}/>

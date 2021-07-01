@@ -27,6 +27,7 @@ export const EditorContainer = ({title, article, setTitle, setArticle}) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 />
+    
 
             <TextareaAutosize
                 value={article=== "" ? "" : article}

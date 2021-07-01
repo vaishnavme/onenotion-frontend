@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
 import { NewNote, AllNotes, Login, SignUp } from "./features";
