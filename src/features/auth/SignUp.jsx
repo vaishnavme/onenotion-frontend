@@ -24,9 +24,18 @@ export default function SignUp() {
             dispatch(signUpUserWithCredentials({name, email, password}))
         } 
     }
+
+    const background = {
+        backgroundImage: `url("https://images.unsplash.com/photo-1624375147958-678d727cc0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")`,
+        backgroundSize: "100%",
+        height: "100vh",
+        backgroundRepeat: "no-reapeat"
+    }
+
    
     return (
-        <div className="bg-white w-96 m-auto my-10 shadow-xl rounded-md">
+        <div style={background} className="flex items-center">
+            <div className="bg-white w-96 m-auto my-10 shadow-xl rounded-md bg-opacity-40 backdrop-filter backdrop-blur-sm">
             <div className="py-4 px-4">
                 <h1 className="font-light text-4xl mt-3 text-center">Create Account</h1>
                 <form action="" className="mt-6">
@@ -78,9 +87,10 @@ export default function SignUp() {
                             Signup
                     </button>
                 </form>
-                <p className="mt-12 text-xs text-center font-light text-gray-400"> Already have an account? <Link to="/login" className="text-black font-medium"> Log In </Link></p> 
+                <p className="mt-12 text-sm text-center font-normal text-gray-900"> Already have an account? <Link to="/login" className="text-black font-medium"> Log In </Link></p> 
 
             </div>
+        </div>
         </div>
     )
 }

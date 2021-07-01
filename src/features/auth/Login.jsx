@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logInUserWithCredentials } from "./authSlice";
 
 export default function Login() {
-    const { status } = useSelector((state) => state.auth);
+    const { status, error, isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -18,8 +19,20 @@ export default function Login() {
         )
     }
 
+    useEffect(() => {
+        isAuthenticated && navigate("/")
+    },[isAuthenticated, navigate])
+
+    const background = {
+        backgroundImage: `url("https://images.unsplash.com/photo-1624375147958-678d727cc0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")`,
+        backgroundSize: "100%",
+        height: "100vh",
+        backgroundRepeat: "no-reapeat"
+    }
+
     return (
-        <div className="bg-white w-96 m-auto my-10 shadow-xl rounded-md">
+        <div style={background} className="flex items-center">
+            <div className="bg-white w-96 m-auto py-10 shadow-xl rounded-md bg-opacity-40 backdrop-filter backdrop-blur-sm">
             <div className="py-8 px-8 rounded-xl">
                 <h1 className="font-light text-4xl mt-3 text-center">Welcome Back</h1>
                 <form action="" className="mt-6">
@@ -48,8 +61,9 @@ export default function Login() {
                             Login
                     </button>
                 </form>
-                <p className="mt-12 text-xs text-center font-light text-gray-400"> Don't have an account? <Link to="/signup" className="text-black font-medium"> Create One </Link>  </p> 
+                <p className="mt-12 text-sm text-center font-normal text-gray-900"> Don't have an account? <Link to="/signup" className="text-black font-medium"> Create One </Link>  </p> 
             </div>
+        </div>
         </div>
     )
 }
