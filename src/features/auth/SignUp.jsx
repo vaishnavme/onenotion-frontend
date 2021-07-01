@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { signUpUserWithCredentials } from "./authSlice"
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUserWithCredentials, resetStatus } from "./authSlice"
 import { emailRegex } from "../../components";
 
 export default function SignUp() {
+    const { status, isAuthenticated } = useSelector((state) => state.auth);
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -24,6 +26,12 @@ export default function SignUp() {
             dispatch(signUpUserWithCredentials({name, email, password}))
         } 
     }
+
+    useEffect(() => {
+        dispatch(resetStatus());
+        isAuthenticated && navigate("/")
+        // eslint-disable-next-line
+    },[isAuthenticated, navigate])
 
     const background = {
         backgroundImage: `url("https://images.unsplash.com/photo-1624375147958-678d727cc0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")`,
@@ -84,7 +92,7 @@ export default function SignUp() {
                         onClick={(e) => {e.preventDefault(); signupHandler();}}
                         disabled={!isValid}
                         className={`block text-center text-white bg-gray-800 p-3 duration-300 rounded-sm ${isValid ? "hover:bg-black" : "hover:bg-gray-800"} w-full`}>
-                            Signup
+                            {status === "loading" ? "Creating account..." : "Signup"}
                     </button>
                 </form>
                 <p className="mt-12 text-sm text-center font-normal text-gray-900"> Already have an account? <Link to="/login" className="text-black font-medium"> Log In </Link></p> 
