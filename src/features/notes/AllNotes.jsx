@@ -7,8 +7,7 @@ import { PreviewContainer } from "../../components";
 export default function AllNotes() {
     const allNotions = useSelector((state) => state.notion)
     const dispatch = useDispatch();
-    const { status, isAuthenticated, authUserToken } = useSelector((state) => state.auth);
-    console.log(isAuthenticated)
+    const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
 
     useEffect(() => {
         isAuthenticated && dispatch(getUserNotes(authUserToken))
@@ -32,7 +31,7 @@ export default function AllNotes() {
                             <div 
                                 className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2">
                                 <div className="text-3xl font-bold my-3 note-title">{note.title}</div>
-                                <div className="note-article">{note.article}</div>
+                                <div className="note-article">{note.content}</div>
                             </div>
                         </Link>
                     ))
