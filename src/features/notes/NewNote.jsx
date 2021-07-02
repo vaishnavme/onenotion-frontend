@@ -66,13 +66,15 @@ export default function NewNote() {
     
                 <div>
                     <ul className="flex">
-                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
-                            <button onClick={previewHandler} className="py-1 px-2">Preview</button>
+                        <li className="mx-2 text-blue-600 bg-blue-50">
+                            <button onClick={previewHandler} className="py-1 px-2">
+                                {isPreviewVisible ? "Edit" : "Preview"}
+                            </button>
                         </li>
-                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
+                        <li className="mx-2 text-blue-600 bg-blue-50">
                             <button onClick={() => newPostHandler()} className="py-1 px-2">Save</button>
                         </li>
-                        <li className="mx-2 bg-gray-800 hover:bg-gray-700 rounded text-white">
+                        <li className="mx-2 text-blue-600 bg-blue-50">
                             <button onClick={() => clearNote()} className="py-1 px-2">Clear</button>
                         </li>
                     </ul>
