@@ -1,16 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getNote } from "../../services/notes";
+import { getPages, updatePage } from "../../services/notes";
 
-export const getUserNotes = createAsyncThunk(
-    "notes/getNote",
+export const getUserPages = createAsyncThunk(
+    "pages/getPages",
     async() => {
-        const {data: {pages}} = await getNote();
+        const {data: {pages}} = await getPages();
         return pages
     }
 )
 
+export const updateUserPage = createAsyncThunk(
+    "pages/updatePage",
+    async(pageUpdate, pageId) => {
+        const {data: {success, message}} = await updatePage(pageUpdate, pageId)
+        console.log(success)
+    }
+)
+
 export const noteSlice = createSlice({
-    name: "notes",
+    name: "pages",
     initialState: {
         notes: [],
         status: "idle"
@@ -21,13 +29,13 @@ export const noteSlice = createSlice({
         }
     },
     extraReducers: {
-        [getUserNotes.pending]: (state) => {
+        [getUserPages.pending]: (state) => {
             state.status = "loading"
         },
-        [getUserNotes.fulfilled]: (state, action) => {
+        [getUserPages.fulfilled]: (state, action) => {
             state.notes = (action.payload);
         },
-        [getUserNotes.rejected]: (state) => {
+        [getUserPages.rejected]: (state) => {
             state.status = "error"
         }
     }

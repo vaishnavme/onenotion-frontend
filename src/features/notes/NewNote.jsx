@@ -1,36 +1,57 @@
-import { useState } from "react";
-import { useParams } from "react-router";
-import { useDispatch } from "react-redux";
-import { saveNewNote } from "./noteSlice";
+import { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { saveNewNote, updateUserPage } from "./noteSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
+const marked = require("marked");
 
 export default function NewNote() {
     const [isPreviewVisible, setPreviewVisible] = useState();
+    const { authUserToken } = useSelector((state) => state.auth);
     const [title, setTitle] = useState("");
-    const [article, setArticle] = useState("");
+    const [content, setContent] = useState("");
+
     const dispatch = useDispatch();
+    const location = useLocation();
+    const { pageId } = useParams();
 
-    const { noteId } = useParams();
-
-    console.log(getTimeandData(),);
+    useEffect(() => {
+        if(pageId && location.pathname.includes('/edit-page')) {
+            (async () => {
+                try {
+                    const {data: {page, success}} = await axios.get(`/pages/${pageId}`)
+                    if(success) {
+                        setTitle(page.title)
+                        setContent(page.content)
+                    }
+                } catch (err) {
+                    console.error(err)
+                } 
+            })();
+        }
+    },[])
 
     const newPostHandler = () => {
-        const newNote = {
-            id: "note78",
+        const page = {
             title: title,
             date: getTimeandData(),
-            label: "Test",
-            isBookmarked: false,
-            article: article
+            label: "General",
+            isBookmark: true,
+            content: content
         }
-        dispatch(saveNewNote(newNote));
+        if(pageId && location.pathname.includes('/edit-page')) {
+            console.log(pageId)
+            dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
+        }
+        //dispatch(saveNewNote(newNote));
     }
 
     const previewHandler = () => setPreviewVisible((prevState) => !prevState);
 
     const clearNote = () => {
         setTitle("");
-        setArticle("");
+        setContent("");
     }
 
     return (
@@ -63,14 +84,14 @@ export default function NewNote() {
                     isPreviewVisible ? 
                     <PreviewContainer
                         title={title}
-                        article={article}
+                        content={content}
                     />
                     :
                     <EditorContainer
                         title={title}
-                        article={article}
+                        content={content}
                         setTitle={setTitle}
-                        setArticle={setArticle}
+                        setContent={setContent}
                     />
                 }
             </div>
