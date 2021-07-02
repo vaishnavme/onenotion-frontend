@@ -27,6 +27,7 @@ export default function NewNote() {
                     console.error(err)
                 } 
             })();
+            setPreviewVisible(true)
         }
     },[location, pageId])
 
@@ -39,7 +40,6 @@ export default function NewNote() {
             content: content
         }
         if(pageId && location.pathname.includes('/edit-page')) {
-            console.log(pageId)
             dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
         } else {
             dispatch(saveUserPage(page));

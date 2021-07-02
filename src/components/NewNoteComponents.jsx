@@ -41,9 +41,9 @@ export const EditorContainer = ({title, content, setTitle, setContent}) => {
 
 export const PreviewContainer = ({title,content}) => {
     return (
-        <Fragment>
+        <div>
             <div className="text-3xl font-bold">{title}</div>
             <div className="my-3" dangerouslySetInnerHTML = {{__html: marked(content)}}></div>
-        </Fragment>
+        </div>
     )
 }

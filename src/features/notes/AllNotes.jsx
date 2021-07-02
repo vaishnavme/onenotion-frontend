@@ -26,12 +26,13 @@ export default function AllNotes() {
             </div>
             <div className="notesGrid my-4">
                 { notionPages &&
-                    notionPages.map((note) => (
-                        <Link to={`/edit-page/${note._id}`} key={note._id}>
+                    notionPages.map((page) => (
+                        <Link to={`/edit-page/${page._id}`} key={page._id}>
                             <div 
-                                className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2">
-                                <div className="text-3xl font-bold my-3 note-title">{note.title}</div>
-                                <div className="note-article">{note.content}</div>
+                                className="rounded-md bg-white p-4 shadow-md transition-all duration-300 ease ">
+                                <div className="text-3xl font-bold my-2 note-title">{page.title}</div>
+                                <span className="text-xs font-bold">{page.date}</span>
+                                <div className="note-article">{page.content}</div>
                             </div>
                         </Link>
                     ))
