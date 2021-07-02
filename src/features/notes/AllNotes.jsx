@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserPages } from "./noteSlice";
+import { getUserPages, deleteUserPage } from "./noteSlice";
 import { Shorts } from "../../components";
 
 export default function AllNotes() {
@@ -12,6 +12,10 @@ export default function AllNotes() {
     useEffect(() => {
         isAuthenticated && dispatch(getUserPages(authUserToken))
     }, [isAuthenticated,dispatch,authUserToken])
+
+    const deletePageHandler = (pageId) => {
+        dispatch(deleteUserPage(pageId))
+    }
     
     return (
         <div>
@@ -27,7 +31,11 @@ export default function AllNotes() {
             <div className="notesGrid my-4">
                 { notionPages &&
                     notionPages.map((page) => (
-                        <Shorts page={page}/>
+                        <Shorts 
+                            key={page._id}
+                            page={page}
+                            deletePageHandler={deletePageHandler}
+                        />
                     ))
                 }
             </div>

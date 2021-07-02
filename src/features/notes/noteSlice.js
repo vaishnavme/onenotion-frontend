@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPages, updatePage, savePage } from "../../services/notes";
+import { getPages, updatePage, savePage, deletePage } from "../../services/notes";
 
 export const getUserPages = createAsyncThunk(
     "pages/getPages",
@@ -20,6 +20,14 @@ export const saveUserPage = createAsyncThunk(
     "pages/savePage",
     async(page) => {
         const data = await savePage(page);
+    }
+)
+
+export const deleteUserPage = createAsyncThunk(
+    "pages/deletePage",
+    async(pageId) => {
+        const {data: {success, message}} = await deletePage(pageId);
+        console.log(success)
     }
 )
 

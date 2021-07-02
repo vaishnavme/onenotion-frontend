@@ -33,3 +33,12 @@ export const savePage = async(page) => {
         console.log(err)
     }
 }
+
+export const deletePage = async(pageId) => {
+    try {
+        const response = await axios.delete(`/pages/${pageId}`)
+        return response
+    } catch(err) {
+        console.log(err)
+    }
+}
