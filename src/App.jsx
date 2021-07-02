@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { NewPage, AllPages, Login, SignUp, Account } from "./features";
+import { NewPage, AllPages, Login, SignUp, Account, Shared } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import "./App.css";
 
@@ -25,7 +25,7 @@ function App() {
                 <PrivateRoute path="/create" element={<NewPage />} />
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
-                <PrivateRoute path="/shared" element={<NewPage />} />
+                <PrivateRoute path="/shared" element={<Shared />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
