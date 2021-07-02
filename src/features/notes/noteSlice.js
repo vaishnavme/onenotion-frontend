@@ -3,9 +3,9 @@ import { getNote } from "../../services/notes";
 
 export const getUserNotes = createAsyncThunk(
     "notes/getNote",
-    async(authUserToken) => {
-        const {data: {userNotes}} = await getNote(authUserToken)
-        return userNotes.notes
+    async() => {
+        const {data: {pages}} = await getNote();
+        return pages
     }
 )
 
