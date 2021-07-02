@@ -1,22 +1,18 @@
 import { Fragment } from "react";
 import TextareaAutosize from 'react-autosize-textarea';
-const marked = require("marked");
 
-marked.setOptions({
-    renderer: new marked.Renderer(),
+const MarkdownIt = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typographer: true,
+    breaks: true,
+    quotes: '“”‘’',
     highlight: function(code, lang) {
-      const hljs = require('highlight.js');
-      const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-      return hljs.highlight(code, { language }).value;
+        const hljs = require('highlight.js');
+        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        return hljs.highlight(code, { language }).value;
     },
-    pedantic: false,
-    gfm: true,
-    breaks: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false
-  });
+});
 
 export const EditorContainer = ({title, content, setTitle, setContent}) => {
     return (
@@ -38,12 +34,11 @@ export const EditorContainer = ({title, content, setTitle, setContent}) => {
     )
 }
 
-
 export const PreviewContainer = ({title,content}) => {
     return (
         <div>
             <div className="text-3xl font-bold">{title}</div>
-            <div className="my-3" dangerouslySetInnerHTML = {{__html: marked(content)}}></div>
+            <div className="my-3" dangerouslySetInnerHTML = {{__html: MarkdownIt.render(content)}}></div>
         </div>
     )
 }
