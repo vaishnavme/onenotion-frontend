@@ -33,16 +33,9 @@ export default function SignUp() {
         // eslint-disable-next-line
     },[isAuthenticated, navigate])
 
-    const background = {
-        backgroundImage: `url("https://images.unsplash.com/photo-1624375147958-678d727cc0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80")`,
-        backgroundSize: "100%",
-        height: "100vh",
-        backgroundRepeat: "no-reapeat"
-    }
-
    
     return (
-        <div style={background} className="flex items-center">
+        <div className="flex items-center backgorundImage">
             <div className="bg-white w-96 m-auto my-10 shadow-xl rounded-md bg-opacity-40 backdrop-filter backdrop-blur-sm">
             <div className="py-4 px-4">
                 <h1 className="font-light text-4xl mt-3 text-center">Create Account</h1>
