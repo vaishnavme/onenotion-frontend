@@ -36,7 +36,7 @@ export const EditorContainer = ({title, content, setTitle, setContent}) => {
 
 export const PreviewContainer = ({title,content}) => {
     return (
-        <div>
+        <div className="previewContainer">
             <div className="text-3xl font-bold">{title}</div>
             <div className="my-3" dangerouslySetInnerHTML = {{__html: MarkdownIt.render(content)}}></div>
         </div>
