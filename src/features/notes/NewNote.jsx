@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { saveNewNote, updateUserPage } from "./noteSlice";
+import { saveUserPage, updateUserPage } from "./noteSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
 const marked = require("marked");
 
@@ -43,8 +43,9 @@ export default function NewNote() {
         if(pageId && location.pathname.includes('/edit-page')) {
             console.log(pageId)
             dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
+        } else {
+            dispatch(saveUserPage(page));
         }
-        //dispatch(saveNewNote(newNote));
     }
 
     const previewHandler = () => setPreviewVisible((prevState) => !prevState);

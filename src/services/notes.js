@@ -21,3 +21,15 @@ export const updatePage = async({pageUpdate, pageId}) => {
         console.log(err)
     }
 }
+
+export const savePage = async(page) => {
+    console.log(page);
+    try {
+        const response = await axios.post(`/pages`, {
+            page: page
+        })
+        return response
+    } catch(err) {
+        console.log(err)
+    }
+}
