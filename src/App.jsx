@@ -1,11 +1,21 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
+import axios from "axios";
 import { NewNote, AllNotes, Login, SignUp } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import "./App.css";
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      axios.defaults.headers.common["Authorization"] = authUserToken;
+    }
+    // eslint-disable-next-line
+  },[isAuthenticated])
+
   return (
     <div>
       {isAuthenticated && <Navbar />}
