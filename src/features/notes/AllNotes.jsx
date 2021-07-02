@@ -2,16 +2,16 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserPages } from "./noteSlice";
-import { PreviewContainer } from "../../components";
 
 export default function AllNotes() {
-    const allNotions = useSelector((state) => state.notion)
+    const notionPages = useSelector((state) => state.notion.pages)
+
     const dispatch = useDispatch();
     const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
 
     useEffect(() => {
         isAuthenticated && dispatch(getUserPages(authUserToken))
-    }, [])
+    }, [isAuthenticated,dispatch,authUserToken])
     
     return (
         <div>
@@ -25,8 +25,8 @@ export default function AllNotes() {
                 </div>
             </div>
             <div className="notesGrid my-4">
-                {
-                    allNotions.notes.map((note) => (
+                { notionPages &&
+                    notionPages.map((note) => (
                         <Link to={`/edit-page/${note._id}`} key={note._id}>
                             <div 
                                 className="rounded-md p-4 hover:shadow-lg transition-all duration-300 ease border-2">

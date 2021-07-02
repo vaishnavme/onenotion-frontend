@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { saveUserPage, updateUserPage } from "./noteSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
-const marked = require("marked");
 
 export default function NewNote() {
     const [isPreviewVisible, setPreviewVisible] = useState();
-    const { authUserToken } = useSelector((state) => state.auth);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -30,11 +28,11 @@ export default function NewNote() {
                 } 
             })();
         }
-    },[])
+    },[location, pageId])
 
     const newPostHandler = () => {
         const page = {
-            title: title,
+            title: title || "Untitled",
             date: getTimeandData(),
             label: "General",
             isBookmark: true,
