@@ -18,7 +18,7 @@ marked.setOptions({
     xhtml: false
   });
 
-export const EditorContainer = ({title, article, setTitle, setArticle}) => {
+export const EditorContainer = ({title, content, setTitle, setContent}) => {
     return (
         <Fragment>
             <TextareaAutosize
@@ -30,20 +30,20 @@ export const EditorContainer = ({title, article, setTitle, setArticle}) => {
     
 
             <TextareaAutosize
-                value={article=== "" ? "" : article}
+                value={content=== "" ? "" : content}
                 className="my-3 p-1 bg-gray-50 w-full rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
-                onChange={(e) => setArticle(e.target.value)}
+                onChange={(e) => setContent(e.target.value)}
             />         
         </Fragment>
     )
 }
 
 
-export const PreviewContainer = ({title,article}) => {
+export const PreviewContainer = ({title,content}) => {
     return (
         <Fragment>
             <div className="text-3xl font-bold">{title}</div>
-            <div className="my-3" dangerouslySetInnerHTML = {{__html: marked(article)}}></div>
+            <div className="my-3" dangerouslySetInnerHTML = {{__html: marked(content)}}></div>
         </Fragment>
     )
 }
