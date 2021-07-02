@@ -14,7 +14,7 @@ function App() {
       axios.defaults.headers.common["Authorization"] = authUserToken;
     }
     // eslint-disable-next-line
-  },[isAuthenticated])
+  },[])
 
   return (
     <div>
@@ -23,7 +23,7 @@ function App() {
             <Routes>
                 <PrivateRoute path="/" element={<AllNotes />} />
                 <PrivateRoute path="/create" element={<NewNote />} />
-                <PrivateRoute path="/edit-page/:noteId" element={<NewNote />} />
+                <PrivateRoute path="/edit-page/:pageId" element={<NewNote />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
