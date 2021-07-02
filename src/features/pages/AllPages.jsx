@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserPages, deleteUserPage } from "./noteSlice";
 import { Shorts } from "../../components";
 
-export default function AllNotes() {
+export default function AllPages() {
     const notionPages = useSelector((state) => state.notion.pages)
 
     const dispatch = useDispatch();

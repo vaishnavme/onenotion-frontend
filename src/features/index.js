@@ -1,4 +1,5 @@
-export { default as AllNotes } from "./notes/AllNotes";
-export { default as NewNote } from "./notes/NewNote";
+export { default as AllPages } from "./pages/AllPages";
+export { default as NewPage } from "./pages/NewPage";
 export { default as Login } from "./auth/Login";
 export { default as SignUp } from "./auth/SignUp";
+export { default as Account } from "./auth/Account";

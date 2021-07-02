@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { NewNote, AllNotes, Login, SignUp } from "./features";
+import { NewPage, AllPages, Login, SignUp, Account } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import "./App.css";
 
@@ -21,9 +21,11 @@ function App() {
       {isAuthenticated && <Navbar />}
         <div className={` md:mt-0 ${isAuthenticated ? "mt-16 p-4 md:ml-52" : "" }`}>
             <Routes>
-                <PrivateRoute path="/" element={<AllNotes />} />
-                <PrivateRoute path="/create" element={<NewNote />} />
-                <PrivateRoute path="/edit-page/:pageId" element={<NewNote />} />
+                <PrivateRoute path="/" element={<AllPages />} />
+                <PrivateRoute path="/create" element={<NewPage />} />
+                <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
+                <PrivateRoute path="/account" element={<Account />} />
+                <PrivateRoute path="/shared" element={<NewPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>

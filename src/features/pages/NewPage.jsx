@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { saveUserPage, updateUserPage } from "./noteSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
 
-export default function NewNote() {
+export default function NewPage() {
     const [isPreviewVisible, setPreviewVisible] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
