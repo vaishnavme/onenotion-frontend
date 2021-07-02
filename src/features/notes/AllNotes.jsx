@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserPages } from "./noteSlice";
@@ -27,14 +27,17 @@ export default function AllNotes() {
             <div className="notesGrid my-4">
                 { notionPages &&
                     notionPages.map((page) => (
-                        <Link to={`/edit-page/${page._id}`} key={page._id}>
-                            <div 
-                                className="rounded-md bg-white p-4 shadow-md transition-all duration-300 ease ">
-                                <div className="text-3xl font-bold my-2 note-title">{page.title}</div>
-                                <span className="text-xs font-bold">{page.date}</span>
-                                <div className="note-article">{page.content}</div>
+                        <div className="rounded-md bg-white shadow-md" key={page._id}>
+                            <div className="flex justify-between bg-gray-50 p-2 items-center">
+                                <span className="text-xs font-semibold text-gray-700">{page.date}</span>
                             </div>
-                        </Link>
+                            <Link to={`/edit-page/${page._id}`}>
+                                <div className="px-4 pb-4 rounded-md">
+                                    <div className="text-3xl font-bold my-1 note-title">{page.title}</div>
+                                    <div className="shortPage">{page.content}</div>
+                                </div>                             
+                            </Link>
+                        </div>
                     ))
                 }
             </div>

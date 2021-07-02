@@ -74,4 +74,4 @@ export const Navbar = () => {
     )
 }
 
-const navStyle = "fixed top-0 h-full pt-4 px-4 pb-0 shadow bg-blue-100 z-10 overflow-hidden transition-all duration-500 ease-in-out"
+const navStyle = "fixed top-0 h-full pt-4 px-4 pb-0 shadow bg-blue-100 z-50 overflow-hidden transition-all duration-500 ease-in-out"
