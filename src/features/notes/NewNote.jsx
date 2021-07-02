@@ -6,7 +6,7 @@ import { saveUserPage, updateUserPage } from "./noteSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
 
 export default function NewNote() {
-    const [isPreviewVisible, setPreviewVisible] = useState();
+    const [isPreviewVisible, setPreviewVisible] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
