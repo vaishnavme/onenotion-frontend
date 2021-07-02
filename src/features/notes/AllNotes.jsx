@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserNotes } from "./noteSlice";
+import { getUserPages } from "./noteSlice";
 import { PreviewContainer } from "../../components";
 
 export default function AllNotes() {
@@ -10,7 +10,7 @@ export default function AllNotes() {
     const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        isAuthenticated && dispatch(getUserNotes(authUserToken))
+        isAuthenticated && dispatch(getUserPages(authUserToken))
     }, [])
     
     return (
