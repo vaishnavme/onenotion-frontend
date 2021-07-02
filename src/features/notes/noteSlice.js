@@ -12,23 +12,21 @@ export const getUserPages = createAsyncThunk(
 export const updateUserPage = createAsyncThunk(
     "pages/updatePage",
     async(pageUpdate, pageId) => {
-        const {data: {success, message}} = await updatePage(pageUpdate, pageId)
-        console.log(success)
+        const data = await updatePage(pageUpdate, pageId);
     }
 )
 
 export const saveUserPage = createAsyncThunk(
     "pages/savePage",
     async(page) => {
-        const {data: {success, message}} = await savePage(page);
-        console.log(success, message)
+        const data = await savePage(page);
     }
 )
 
 export const noteSlice = createSlice({
     name: "pages",
     initialState: {
-        notes: [],
+        pages: [],
         status: "idle"
     },
     reducers: {
@@ -41,7 +39,7 @@ export const noteSlice = createSlice({
             state.status = "loading"
         },
         [getUserPages.fulfilled]: (state, action) => {
-            state.notes = (action.payload);
+            state.pages = (action.payload);
         },
         [getUserPages.rejected]: (state) => {
             state.status = "error"
