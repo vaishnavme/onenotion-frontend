@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserPages, deleteUserPage } from "./noteSlice";
-import { Shorts } from "../../components";
+import { PageCard } from "../../components";
 
 export default function AllPages() {
     const notionPages = useSelector((state) => state.notion.pages)
@@ -31,7 +31,7 @@ export default function AllPages() {
             <div className="notesGrid my-4">
                 { notionPages &&
                     notionPages.map((page) => (
-                        <Shorts 
+                        <PageCard 
                             key={page._id}
                             page={page}
                             deletePageHandler={deletePageHandler}
