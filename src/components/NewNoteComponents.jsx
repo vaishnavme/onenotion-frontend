@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import TextareaAutosize from 'react-autosize-textarea';
+import styles from "../css/Markdown.module.css";
 
 const MarkdownIt = require('markdown-it')({
     html: true,
@@ -36,7 +37,7 @@ export const EditorContainer = ({title, content, setTitle, setContent}) => {
 
 export const PreviewContainer = ({title,content}) => {
     return (
-        <div className="previewContainer">
+        <div className={`${styles.markdown}`}>
             <div className="text-3xl font-bold">{title}</div>
             <div className="my-3" dangerouslySetInnerHTML = {{__html: MarkdownIt.render(content)}}></div>
         </div>
