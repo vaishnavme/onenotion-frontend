@@ -10,7 +10,6 @@ export default function AllPages() {
 
     const dispatch = useDispatch();
     
-
     useEffect(() => {
         isAuthenticated && dispatch(getUserPages(authUserToken))
     }, [isAuthenticated, dispatch, authUserToken ])

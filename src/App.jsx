@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { NewPage, AllPages, Login, PublicPage, SignUp, Account } from "./features";
-import { Navbar, PrivateRoute } from "./components";
+import { Navbar, PrivateRoute, Page } from "./components";
 import "./css/App.css";
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
                 <PrivateRoute path="/shared" element={<PublicPage />} />
+                <Route path="/public/:pageId" element={<Page/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
