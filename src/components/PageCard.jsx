@@ -13,14 +13,13 @@ export const PageCard = ({page, deletePageHandler}) => {
             {
                 isMenuVisible && 
                 <div className="origin-right top-8 right-3 absolute right-0 mt-2 w-20 rounded text-left shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <ul>
-                        <li className="border-b px-2 hover:text-red-500 hover:bg-red-100 cursor-pointer">
-                            <button onClick={() => deletePageHandler(page._id)}>Delete</button>
-                        </li>
-                        <li className="px-2 hover:text-blue-500 hover:bg-blue-100 cursor-pointer">
-                            <button>Share</button>
-                        </li>
-                    </ul>
+                    <button
+                        className="border-b px-2 hover:text-red-500 hover:bg-red-100 cursor-pointer" 
+                        onClick={() => deletePageHandler(page._id)}>Delete</button>
+
+                    <button 
+                        className="px-2 hover:text-blue-500 hover:bg-blue-100 cursor-pointer">
+                            Share</button>
                 </div>
             }
         </div>

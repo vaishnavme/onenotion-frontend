@@ -1,21 +1,25 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserPages, deleteUserPage } from "./noteSlice";
+import { getUserPages, deleteUserPage } from "./pageSlice";
 import { PageCard } from "../../components";
 
 export default function AllPages() {
-    const notionPages = useSelector((state) => state.notion.pages)
+    const {pages, status} = useSelector((state) => state.notion);
+    console.log("pages", pages);
+    console.log("status", status)
 
     const dispatch = useDispatch();
     const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
 
     useEffect(() => {
         isAuthenticated && dispatch(getUserPages(authUserToken))
-    }, [isAuthenticated,dispatch,authUserToken])
+    }, [isAuthenticated, dispatch, authUserToken ])
 
     const deletePageHandler = (pageId) => {
         dispatch(deleteUserPage(pageId))
     }
+
+    const sharePageHandler = (pageId) => {}
     
     return (
         <div>
@@ -29,8 +33,8 @@ export default function AllPages() {
                 </div>
             </div>
             <div className="notesGrid my-4">
-                { notionPages &&
-                    notionPages.map((page) => (
+                { pages &&
+                    pages.map((page) => (
                         <PageCard 
                             key={page._id}
                             page={page}

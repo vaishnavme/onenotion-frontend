@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { saveUserPage, updateUserPage } from "./noteSlice";
+import { saveUserPage, updateUserPage } from "./pageSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
 
 export default function NewPage() {

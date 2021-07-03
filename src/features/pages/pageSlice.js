@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPages, updatePage, savePage, deletePage } from "../../services/notes";
+import { getPages, updatePage, savePage, deletePage } from "../../services/page.service";
 
 export const getUserPages = createAsyncThunk(
     "pages/getPages",
