@@ -41,9 +41,9 @@ export const deleteUserPage = createAsyncThunk(
 export const getPublicPageList = createAsyncThunk(
     "pages/getPublicPage",
     async() => {
-        const {data: {success, message, userShared}} = await getPublicPage();
+        const {data: {success, message, sharedPages}} = await getPublicPage();
         console.log({success, message});
-        return userShared
+        return sharedPages
     }
 )
 

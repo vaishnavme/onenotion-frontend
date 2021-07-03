@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { getPublicPageList, deletePageShared } from "./pageSlice";
 
 export default function PublicPage() {
     const { publicPages } = useSelector((state) => state.notion)
-
+    
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getPublicPageList());
-    },[])
+    },[dispatch])
 
     const deletePublicPage = (pageId) => {
         dispatch(deletePageShared(pageId))
@@ -35,10 +35,10 @@ export default function PublicPage() {
                         publicPages.map((page) => (
                             <li key={page._id} 
                                 className="flex items-center justify-between bg-blue-100 text-lg font-medium p-2 my-2 rounded">
-                                <div>{page.publicPage.title.substring(0, 20)}</div>
+                                <div>{page.title.substring(0, 20)}</div>
                                 <div>
                                     <button 
-                                        onClick={() => deletePublicPage(page.publicPage._id)}
+                                        onClick={() => deletePublicPage(page._id)}
                                         className="text-red-600 bg-red-50 hover:bg-red-100 px-2 rounded">
                                         <i className='bx bx-trash'></i>
                                     </button>

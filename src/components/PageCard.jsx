@@ -15,11 +15,11 @@ export const PageCard = ({page, deletePageHandler, sharePageHandler}) => {
                 <div className="origin-right top-8 right-3 absolute right-0 mt-2 w-20 rounded text-left shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <button
                         onClick={() => deletePageHandler(page._id)}
-                        className="border-b px-2 hover:text-red-500 hover:bg-red-100 cursor-pointer">Delete</button>
+                        className="border-b w-full px-2 hover:text-red-500 hover:bg-red-100 cursor-pointer">Delete</button>
 
                     <button 
                         onClick={() => sharePageHandler(page._id)}
-                        className="px-2 hover:text-blue-500 hover:bg-blue-100 cursor-pointer">Share</button>
+                        className="px-2 w-full hover:text-blue-500 hover:bg-blue-100 cursor-pointer">Share</button>
                 </div>
             }
         </div>
