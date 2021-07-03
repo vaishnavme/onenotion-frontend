@@ -31,7 +31,7 @@ export const authSlice = createSlice({
         authUser: JSON.parse(localStorage?.getItem("authUser")) || null,
         isAuthenticated: JSON.parse(localStorage?.getItem("isAuthenticated")) || null,
         status: JSON.parse(localStorage?.getItem("authUserToken"))
-                ? "success"
+                ? "tokenReceived"
                 : "idle",
     },
     reducers: {

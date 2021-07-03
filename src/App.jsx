@@ -7,14 +7,14 @@ import { Navbar, PrivateRoute } from "./components";
 import "./css/App.css";
 
 function App() {
-  const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
+  const { status, authUserToken, isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if(isAuthenticated) {
+    if(status === "tokenReceived") {
       axios.defaults.headers.common["Authorization"] = authUserToken;
     }
     // eslint-disable-next-line
-  },[])
+  },[status])
 
   return (
     <div>
