@@ -44,7 +44,7 @@ export const deletePage = async(pageId) => {
 export const getPublicPage = async() => {
     try {
         const response = await axios.get(`/public/pages`);
-        console.log(response)
+        return response
     } catch(err) {
         console.log(err)
     }

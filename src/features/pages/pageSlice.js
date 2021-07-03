@@ -67,7 +67,7 @@ export const noteSlice = createSlice({
     name: "pages",
     initialState: {
         pages: [],
-        publicPage: [],
+        publicPages: [],
         status: "idle"
     },
     reducers: {
@@ -90,7 +90,7 @@ export const noteSlice = createSlice({
             state.status = "loading"
         },
         [getPublicPageList.fulfilled]: (state, action) => {
-            state.publicPage = (action.payload);
+            state.publicPages = (action.payload);
             state.status = "success"
         },
         [getPublicPageList.rejected]: (state) => {
