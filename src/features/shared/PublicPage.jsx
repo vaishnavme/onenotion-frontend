@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { getPublicPageList, deletePageShared } from "./pageSlice";
+import { getPublicPageList, deletePageShared } from "../pages/pageSlice";
 
 export default function PublicPage() {
     const { publicPages } = useSelector((state) => state.notion);

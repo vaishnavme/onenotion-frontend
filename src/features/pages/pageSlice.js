@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPages, updatePage, savePage, deletePage,
-    getPublicPage, pagePublish, deletePublish } 
-from "../../services/page.service";
+import { getPages, updatePage, savePage, deletePage } from "../../services/page.service";
 
 // pages operations
 export const getUserPages = createAsyncThunk(
@@ -37,32 +35,6 @@ export const deleteUserPage = createAsyncThunk(
     }
 )
 
-// public page operations
-export const getPublicPageList = createAsyncThunk(
-    "pages/getPublicPage",
-    async() => {
-        const {data: {success, message, sharedPages}} = await getPublicPage();
-        console.log({success, message});
-        return sharedPages
-    }
-)
-
-export const makePageShare = createAsyncThunk(
-    "pages/pagePublish",
-    async(pageId) => {
-        const {data: {success, message}} = await pagePublish(pageId);
-        console.log({success, message});
-    }
-)
-
-export const deletePageShared = createAsyncThunk(
-    "pages/pagePublish",
-    async(pageId) => {
-        const {data: {success, message}} = await deletePublish(pageId);
-        console.log({success, message});
-        }
-)
-
 export const noteSlice = createSlice({
     name: "pages",
     initialState: {
@@ -70,11 +42,7 @@ export const noteSlice = createSlice({
         publicPages: [],
         pageStatus: "idle"
     },
-    reducers: {
-        saveNewNote: (state, action) => {
-            state.notes.push(action.payload);
-        }
-    },
+    reducers: {},
     extraReducers: {
         [getUserPages.pending]: (state) => {
             state.pageStatus = "loading"
@@ -85,19 +53,8 @@ export const noteSlice = createSlice({
         },
         [getUserPages.rejected]: (state) => {
             state.pageStatus = "error"
-        },
-        [getPublicPageList.pending]: (state) => {
-            state.pageStatus = "loading"
-        },
-        [getPublicPageList.fulfilled]: (state, action) => {
-            state.publicPages = (action.payload);
-            state.pageStatus = "pageLoaded"
-        },
-        [getPublicPageList.rejected]: (state) => {
-            state.pageStatus = "error"
-        },
+        }
     }
 })
 
-export const { saveNewNote } = noteSlice.actions;
 export default noteSlice.reducer;
