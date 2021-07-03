@@ -32,14 +32,14 @@ function App() {
             </Routes>
         </div>
         <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          transition={Slide}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
+            position="bottom-right"
+            autoClose={2000}
+            transition={Slide}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss={false}
         />
     </div>
   );

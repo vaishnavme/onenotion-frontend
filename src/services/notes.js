@@ -10,8 +10,6 @@ export const getPages = async() => {
 }
 
 export const updatePage = async({pageUpdate, pageId}) => {
-    console.log(pageUpdate);
-    console.log(pageId)
     try {
         const response = await axios.post(`/pages/${pageId}`, {
             pageUpdates: pageUpdate

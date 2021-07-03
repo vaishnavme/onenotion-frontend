@@ -19,15 +19,18 @@ export const updateUserPage = createAsyncThunk(
 export const saveUserPage = createAsyncThunk(
     "pages/savePage",
     async(page) => {
-        const data = await savePage(page);
+        const {data: {success}} = await savePage(page);
+        if(success) {
+            success("Page Saved")
+        }
     }
 )
 
 export const deleteUserPage = createAsyncThunk(
     "pages/deletePage",
     async(pageId) => {
-        const {data: {success, message}} = await deletePage(pageId);
-        console.log(success)
+        const {data: {success}} = await deletePage(pageId);
+       console.log("data", success)
     }
 )
 
