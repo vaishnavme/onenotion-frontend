@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserPages, deleteUserPage } from "./pageSlice";
+import { getUserPages, deleteUserPage, makePageShare } from "./pageSlice";
 import { PageCard } from "../../components";
 
 export default function AllPages() {
@@ -19,7 +19,9 @@ export default function AllPages() {
         dispatch(deleteUserPage(pageId))
     }
 
-    const sharePageHandler = (pageId) => {}
+    const sharePageHandler = (pageId) => {
+        dispatch(makePageShare(pageId))
+    }
     
     return (
         <div>
@@ -39,6 +41,7 @@ export default function AllPages() {
                             key={page._id}
                             page={page}
                             deletePageHandler={deletePageHandler}
+                            sharePageHandler={sharePageHandler}
                         />
                     ))
                 }

@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { NewPage, AllPages, Login, SignUp, Account, Shared } from "./features";
+import { NewPage, AllPages, Login, PublicPage, SignUp, Account } from "./features";
 import { Navbar, PrivateRoute } from "./components";
-import { ToastContainer, Slide } from "react-toastify";
 import "./css/App.css";
 
 function App() {
@@ -26,21 +25,11 @@ function App() {
                 <PrivateRoute path="/create" element={<NewPage />} />
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
-                <PrivateRoute path="/shared" element={<Shared />} />
+                <PrivateRoute path="/shared" element={<PublicPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
         </div>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={2000}
-            transition={Slide}
-            hideProgressBar={false}
-            newestOnTop
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss={false}
-        />
     </div>
   );
 }

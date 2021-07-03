@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPages, updatePage, savePage, deletePage } from "../../services/page.service";
+import { getPages, updatePage, savePage, deletePage,
+    getPublicPage, pagePublish, deletePublish } 
+from "../../services/page.service";
 
+// pages operations
 export const getUserPages = createAsyncThunk(
     "pages/getPages",
     async() => {
@@ -34,10 +37,37 @@ export const deleteUserPage = createAsyncThunk(
     }
 )
 
+// public page operations
+export const getPublicPageList = createAsyncThunk(
+    "pages/getPublicPage",
+    async() => {
+        const {data: {success, message, userShared}} = await getPublicPage();
+        console.log({success, message});
+        return userShared
+    }
+)
+
+export const makePageShare = createAsyncThunk(
+    "pages/pagePublish",
+    async(pageId) => {
+        const {data: {success, message}} = await pagePublish(pageId);
+        console.log({success, message});
+    }
+)
+
+export const deletePageShared = createAsyncThunk(
+    "pages/pagePublish",
+    async(pageId) => {
+        const {data: {success, message}} = await deletePublish(pageId);
+        console.log({success, message});
+        }
+)
+
 export const noteSlice = createSlice({
     name: "pages",
     initialState: {
         pages: [],
+        publicPage: [],
         status: "idle"
     },
     reducers: {
@@ -51,10 +81,21 @@ export const noteSlice = createSlice({
         },
         [getUserPages.fulfilled]: (state, action) => {
             state.pages = (action.payload);
+            state.status = "success"
         },
         [getUserPages.rejected]: (state) => {
             state.status = "error"
-        }
+        },
+        [getPublicPageList.pending]: (state) => {
+            state.status = "loading"
+        },
+        [getPublicPageList.fulfilled]: (state, action) => {
+            state.publicPage = (action.payload);
+            state.status = "success"
+        },
+        [getPublicPageList.rejected]: (state) => {
+            state.status = "error"
+        },
     }
 })
 
