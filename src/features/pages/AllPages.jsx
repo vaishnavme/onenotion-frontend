@@ -28,17 +28,28 @@ export default function AllPages() {
                     </button>
                 </div>
             </div>
-            <div className="notesGrid my-4">
-                { notionPages &&
-                    notionPages.map((page) => (
-                        <PageCard 
-                            key={page._id}
-                            page={page}
-                            deletePageHandler={deletePageHandler}
-                        />
-                    ))
+            
+                {
+                    notionPages.length === 0 ? 
+                    (
+                        <div>You don't have pages</div>
+                    ) :
+                    (
+                    <div className="notesGrid my-4">
+                        { notionPages &&
+                            notionPages.map((page) => (
+                                <PageCard 
+                                    key={page._id}
+                                    page={page}
+                                    deletePageHandler={deletePageHandler}
+                                />
+                            ))
+                        }
+                    </div>
+                    )
                 }
-            </div>
         </div>
     )
 }
+
+
