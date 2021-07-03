@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { NewPage, AllPages, Login, SignUp, Account, Shared } from "./features";
 import { Navbar, PrivateRoute } from "./components";
-import "./App.css";
+import { ToastContainer, Slide } from "react-toastify";
+import "./css/App.css";
 
 function App() {
   const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
@@ -30,6 +31,16 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
         </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          transition={Slide}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+        />
     </div>
   );
 }
