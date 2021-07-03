@@ -68,7 +68,7 @@ export const noteSlice = createSlice({
     initialState: {
         pages: [],
         publicPages: [],
-        status: "idle"
+        pageStatus: "idle"
     },
     reducers: {
         saveNewNote: (state, action) => {
@@ -77,24 +77,24 @@ export const noteSlice = createSlice({
     },
     extraReducers: {
         [getUserPages.pending]: (state) => {
-            state.status = "loading"
+            state.pageStatus = "loading"
         },
         [getUserPages.fulfilled]: (state, action) => {
             state.pages = (action.payload);
-            state.status = "success"
+            state.pageStatus = "pageLoaded"
         },
         [getUserPages.rejected]: (state) => {
-            state.status = "error"
+            state.pageStatus = "error"
         },
         [getPublicPageList.pending]: (state) => {
-            state.status = "loading"
+            state.pageStatus = "loading"
         },
         [getPublicPageList.fulfilled]: (state, action) => {
             state.publicPages = (action.payload);
-            state.status = "success"
+            state.pageStatus = "pageLoaded"
         },
         [getPublicPageList.rejected]: (state) => {
-            state.status = "error"
+            state.pageStatus = "error"
         },
     }
 })

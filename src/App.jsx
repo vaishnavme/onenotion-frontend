@@ -1,20 +1,26 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { getUserPages } from "./features/pages/pageSlice";
 import { NewPage, AllPages, Login, PublicPage, SignUp, Account } from "./features";
 import { Navbar, PrivateRoute, Page } from "./components";
 import "./css/App.css";
 
+
 function App() {
   const { status, authUserToken, isAuthenticated } = useSelector((state) => state.auth);
-
+  const { pageStatus } = useSelector((state) => state.notion)
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     if(status === "tokenReceived") {
       axios.defaults.headers.common["Authorization"] = authUserToken;
     }
-    // eslint-disable-next-line
-  },[status])
+    if(pageStatus === "idle") {
+      dispatch(getUserPages())
+    }
+  },[status, authUserToken, dispatch, pageStatus])
 
   return (
     <div>

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPublicPageList, deletePageShared } from "./pageSlice";
 
 export default function PublicPage() {
-    const { publicPages } = useSelector((state) => state.notion)
-    
+    const { publicPages } = useSelector((state) => state.notion);
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getPublicPageList());

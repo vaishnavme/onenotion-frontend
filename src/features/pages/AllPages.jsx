@@ -1,18 +1,10 @@
-import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserPages, deleteUserPage, makePageShare } from "./pageSlice";
+import { deleteUserPage, makePageShare } from "./pageSlice";
 import { PageCard } from "../../components";
 
 export default function AllPages() {
-    const {pages, status} = useSelector((state) => state.notion);
-    const { isAuthenticated, authUserToken } = useSelector((state) => state.auth);
-    console.log("status", status)
-
+    const { pages } = useSelector((state) => state.notion);
     const dispatch = useDispatch();
-    
-    useEffect(() => {
-        isAuthenticated && dispatch(getUserPages(authUserToken))
-    }, [isAuthenticated, dispatch, authUserToken ])
 
     const deletePageHandler = (pageId) => {
         dispatch(deleteUserPage(pageId))
