@@ -30,7 +30,7 @@ export const deleteSharedPage = createAsyncThunk(
 export const sharedSlice = createSlice({
     name: "shared",
     initialState: {
-        publicPages: [],
+        sharedPages: [],
         sharedStatus: "idle"
     },
     extraReducers: {
@@ -38,7 +38,7 @@ export const sharedSlice = createSlice({
             state.sharedStatus = "loading"
         },
         [getSharedPages.fulfilled]: (state, action) => {
-            state.publicPages = (action.payload);
+            state.sharedPages = (action.payload);
             state.sharedStatus = "pageLoaded"
         },
         [getSharedPages.rejected]: (state) => {
@@ -46,3 +46,5 @@ export const sharedSlice = createSlice({
         },
     }
 })
+
+export default sharedSlice.reducer;

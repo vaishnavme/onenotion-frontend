@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { getUserPages } from "./features/pages/pageSlice";
-import { NewPage, AllPages, Login, PublicPage, SignUp, Account } from "./features";
+import { NewPage, AllPages, Shared, Login, SignUp, Account } from "./features";
 import { Navbar, PrivateRoute, Page } from "./components";
 import "./css/App.css";
 
@@ -31,7 +31,7 @@ function App() {
                 <PrivateRoute path="/create" element={<NewPage />} />
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
-                <PrivateRoute path="/shared" element={<PublicPage />} />
+                <PrivateRoute path="/shared" element={<Shared />} />
                 <Route path="/public/:pageId" element={<Page/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />

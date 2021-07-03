@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserPage, makePageShare } from "./pageSlice";
+import { deleteUserPage } from "./pageSlice";
+import { sharePage } from "../shared/sharedSlice";
 import { PageCard } from "../../components";
 
 export default function AllPages() {
@@ -11,7 +12,7 @@ export default function AllPages() {
     }
 
     const sharePageHandler = (pageId) => {
-        dispatch(makePageShare(pageId))
+        dispatch(sharePage(pageId))
     }
     
     return (
