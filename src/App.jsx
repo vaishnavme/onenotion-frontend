@@ -2,25 +2,29 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/pages/pageSlice";
 import { NewPage, AllPages, Shared, Login, SignUp, Account } from "./features";
 import { Navbar, PrivateRoute, Page } from "./components";
 import "./css/App.css";
 
-
 function App() {
   const { status, authUserToken, isAuthenticated } = useSelector((state) => state.auth);
-  const { pageStatus } = useSelector((state) => state.notion)
+  const { pageStatus } = useSelector((state) => state.page)
+  const { sharedStatus } = useSelector((state) => state.share)
   const dispatch = useDispatch();
   
   useEffect(() => {
     if(status === "tokenReceived") {
       axios.defaults.headers.common["Authorization"] = authUserToken;
     }
-    if(pageStatus === "idle") {
+    if(pageStatus === "idle" ) {
       dispatch(getUserPages())
     }
-  },[status, authUserToken, dispatch, pageStatus])
+    if(sharedStatus === "idle") {
+      dispatch(getSharedPages())
+    }
+  },[status, authUserToken, dispatch, pageStatus, sharedStatus])
 
   return (
     <div>
