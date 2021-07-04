@@ -3,7 +3,7 @@ import axios from "axios";
 import { logInUser, signUpUser } from "../../services/auth.service";
 
 export const logInUserWithCredentials = createAsyncThunk(
-    "auth/logInUser",
+    "auth/logInUserWithCredentials",
     async({email, password}) => {
         const {data: {success, user, token, message}} = await logInUser({email, password})
         if(!success) {
@@ -14,7 +14,7 @@ export const logInUserWithCredentials = createAsyncThunk(
 )
 
 export const signUpUserWithCredentials = createAsyncThunk(
-    "auth/signUpUser",
+    "auth/signUpUserWithCredentials",
     async({name, email, password}) => {
         const {data: {success, user, token, message}} = await signUpUser({name, email, password})
         if(!success) {
