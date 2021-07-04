@@ -13,7 +13,6 @@ export const Page = () => {
             try {
                 const { data } = await axios.get(`/public/shared/${pageId}`)
                 setPageData(data.sharedPage.publicPage)
-                
             } catch (err) {
                 console.error(err)
             }
@@ -24,10 +23,13 @@ export const Page = () => {
     return (
         <div className="m-auto w-full max-w-3xl">
             <div className="text-sm font-medium text-center">{pageData.date}</div>
-            <PreviewContainer 
-                title={pageData.title}
-                content={pageData.content}
-            />
+            {
+                pageData &&
+                <PreviewContainer 
+                    title={pageData.title}
+                    content={pageData.content}
+                />
+            }
         </div>
     )
 }
