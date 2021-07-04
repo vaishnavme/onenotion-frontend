@@ -4,7 +4,8 @@ import { sharePage } from "../shared/sharedSlice";
 import { PageCard } from "../../components";
 
 export default function AllPages() {
-    const { pages } = useSelector((state) => state.notion);
+    const { notion } = useSelector((state) => state.page);
+   
     const dispatch = useDispatch();
 
     const deletePageHandler = (pageId) => {
@@ -17,9 +18,10 @@ export default function AllPages() {
     
     return (
         <div>
+            <div className="text-2xl">Your Pages</div>
             <div className="notesGrid my-4">
-                { pages &&
-                    pages.map((page) => (
+                { notion &&
+                    notion.map((page) => (
                         <PageCard 
                             key={page._id}
                             page={page}
