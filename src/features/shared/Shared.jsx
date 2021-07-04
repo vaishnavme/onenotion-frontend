@@ -1,16 +1,9 @@
-import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
-import { getSharedPages, deleteSharedPage } from "./sharedSlice";
+import { deleteSharedPage } from "./sharedSlice";
 
 export default function Shared() {
-    const { sharedPages, sharedStatus } = useSelector((state) => state.shared);
+    const { publicPage } = useSelector((state) => state.share);
     const dispatch = useDispatch(); 
-    
-    useEffect(() => {
-        if(sharedStatus === "idle") {
-            dispatch(getSharedPages());
-        }
-    },[dispatch, sharedStatus])
 
     const deletePublicPage = (pageId) => {
         dispatch(deleteSharedPage(pageId))
@@ -32,14 +25,21 @@ export default function Shared() {
                     </button>
                 </div>
             </div>
-            <ul>
-                    {
-                        sharedPages && 
-                        sharedPages.map((page) => (
+            {
+                publicPage.length === 0 ? (
+                    <div className="text-3xl">No Public pAGES</div>
+                ) : (
+                    <ul>
+                    { publicPage &&
+                        publicPage.map((page) => (
                             <li key={page._id} 
-                                className="flex items-center justify-between bg-blue-100 text-lg font-medium p-2 my-2 rounded">
-                                <div>{page.title.substring(0, 20)}</div>
+                                className="flex items-center justify-between bg-yellow-50 text-lg font-medium p-2 my-2 rounded">
+                                <div>{page.title}</div>
                                 <div>
+                                    <button 
+                                        className="text-red-600 bg-red-50 hover:bg-blue-100 px-2 rounded mr-4">
+                                        <i className='bx bx-copy'></i>
+                                    </button>
                                     <button 
                                         onClick={() => deletePublicPage(page._id)}
                                         className="text-red-600 bg-red-50 hover:bg-red-100 px-2 rounded">
@@ -49,7 +49,9 @@ export default function Shared() {
                             </li>
                         ))
                     }
-            </ul>
+                </ul>
+                )
+            }
         </div>
     )
 }
