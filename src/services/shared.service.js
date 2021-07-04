@@ -3,7 +3,7 @@ import axios from "axios";
 export const getPublicPage = async() => {
     try {
         const response = await axios.get(`/public/pages`);
-        return response
+        return response.data.sharedPages
     } catch(err) {
         console.log(err)
     }
@@ -12,7 +12,8 @@ export const getPublicPage = async() => {
 export const pagePublish = async(pageId) => {
     try {
         const response = await axios.post(`/public/${pageId}`)
-        return response
+        console.log("shae", response)
+        return response.data.sharedPage.publicPage
     } catch(err) {
         console.log(err)
     }

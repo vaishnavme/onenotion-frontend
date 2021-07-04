@@ -3,7 +3,7 @@ import axios from "axios";
 export const getPages = async() => {
     try {
         const response = await axios.get(`/pages`)
-        return response
+        return response.data.pages
     } catch(err) {
         console.log(err)
     }
@@ -14,7 +14,7 @@ export const updatePage = async({pageUpdate, pageId}) => {
         const response = await axios.post(`/pages/${pageId}`, {
             pageUpdates: pageUpdate
         })
-        return response
+        return response.data.updated
     } catch(err) {
         console.log(err)
     }
@@ -25,7 +25,7 @@ export const savePage = async(page) => {
         const response = await axios.post(`/pages`, {
             page: page
         })
-        return response
+        return response.data.savedPage
     } catch(err) {
         console.log(err)
     }
