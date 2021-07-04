@@ -28,6 +28,7 @@ export const EditorContainer = ({title, content, setTitle, setContent}) => {
 
             <TextareaAutosize
                 value={content=== "" ? "" : content}
+                placeholder="Write your thoughts..."
                 className="my-3 p-1 bg-gray-50 w-full rounded focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-transparent"
                 onChange={(e) => setContent(e.target.value)}
             />         

@@ -33,16 +33,16 @@ export default function Shared() {
                     { publicPage &&
                         publicPage.map((page) => (
                             <li key={page._id} 
-                                className="flex items-center justify-between bg-yellow-50 text-lg font-medium p-2 my-2 rounded">
-                                <div>{page.title}</div>
+                                className="flex items-center justify-between bg-blue-50 text-lg font-medium p-2 my-2 rounded">
+                                <div className="text-gray-900">{page.title.substring(0, 20)}</div>
                                 <div>
                                     <button 
-                                        className="text-red-600 bg-red-50 hover:bg-blue-100 px-2 rounded mr-4">
+                                        className="bg-white hover:bg-blue-400 hover:text-white px-2 rounded mr-4">
                                         <i className='bx bx-copy'></i>
                                     </button>
                                     <button 
                                         onClick={() => deletePublicPage(page._id)}
-                                        className="text-red-600 bg-red-50 hover:bg-red-100 px-2 rounded">
+                                        className="bg-white hover:bg-red-400 hover:text-white px-2 rounded">
                                         <i className='bx bx-trash'></i>
                                     </button>
                                 </div>
