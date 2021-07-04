@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveUserPage, updateUserPage } from "./pageSlice";
@@ -12,6 +12,7 @@ export default function NewPage() {
 
     const dispatch = useDispatch();
     const location = useLocation();
+    const navigate = useNavigate();
     const { pageId } = useParams();
 
     useEffect(() => {
@@ -41,8 +42,10 @@ export default function NewPage() {
         }
         if(pageId && location.pathname.includes('/edit-page')) {
             dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
+            navigate("/")
         } else {
             dispatch(saveUserPage(page));
+            navigate("/")
         }
     }
 
