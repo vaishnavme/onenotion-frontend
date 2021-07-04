@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function Account() {
     const { authUser } = useSelector(state => state.auth);
-    const notionPages = useSelector((state) => state.notion.pages)
+    const { notion } = useSelector((state) => state.page);
+    const { publicPage } = useSelector((state) => state.share);
 
     return (
         <div>
@@ -30,7 +31,20 @@ export default function Account() {
                     <div className="text-sm font-medium">All Pages</div>
                     <ul className="my-4">
                         {
-                            notionPages && notionPages.map((page) => (
+                           notion && notion.map((page) => (
+                                <Link to={`/edit-page/${page._id}`} key={page._id}>
+                                    <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
+                                        <div className="font-medium">{page.title}</div>
+                                        <div className="text-xs font-medium">{page.date}</div>
+                                    </li>
+                                </Link>
+                            ))
+                        }
+                    </ul>
+                    <div className="text-sm font-medium">Public Pages</div>
+                    <ul className="my-4">
+                        {
+                           publicPage && publicPage.map((page) => (
                                 <Link to={`/edit-page/${page._id}`} key={page._id}>
                                     <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
                                         <div className="font-medium">{page.title}</div>
