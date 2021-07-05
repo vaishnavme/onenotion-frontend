@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router";
 import { PreviewContainer } from "."
+import { BASE_URL } from "../api/api";
 
 export const Page = () => {
     const { status, authUserToken } = useSelector((state) => state.auth);
@@ -15,7 +16,7 @@ export const Page = () => {
         }
         (async () => {
             try {
-                const { data } = await axios.get(`/public/shared/${pageId}`)
+                const { data } = await axios.get(`${BASE_URL}/public/shared/${pageId}`)
                 setPageData(data.sharedPage.publicPage)
             } catch (err) {
                 console.error(err)
