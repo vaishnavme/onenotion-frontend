@@ -1,13 +1,23 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSharedPage } from "./sharedSlice";
 
 export default function Shared() {
     const { publicPage } = useSelector((state) => state.share);
+    const [publicPageLink, setPublicPageLink] = useState("");
     const dispatch = useDispatch(); 
 
     const deletePublicPage = (pageId) => {
         dispatch(deleteSharedPage(pageId))
     }
+
+    const getPublicPageLink = (pageId) => {
+        const url = window.location.origin;
+        const pageLink = url + `/public/` + pageId;
+        setPublicPageLink(pageLink)
+        navigator.clipboard.writeText(publicPageLink)
+    }
+
 
     return (
         <div className="m-auto w-full max-w-3xl p-2">
@@ -15,14 +25,13 @@ export default function Shared() {
                 <div className="text-xl font-medium">Hey 👋 You created a public page.</div>
                 <span className="text-xs">This pages are accessible by anyone via link</span>
                 <div className="mt-4 flex items-center justify-between">
-                    <input 
+                    <input
+                        readOnly={true}
+                        value={publicPageLink} 
                         className="rounded w-full p-2"
                         type="text"
                         placeholder="Public page link"
                     />
-                    <button className="py-2 px-3 rounded text-blue-600 bg-blue-50 hover:bg-blue-100">
-                        <i className='bx bx-copy'></i>
-                    </button>
                 </div>
             </div>
             {
@@ -36,7 +45,8 @@ export default function Shared() {
                                 className="flex items-center justify-between bg-blue-50 text-lg font-medium p-2 my-2 rounded">
                                 <div className="text-gray-900">{page.title.substring(0, 20)}</div>
                                 <div>
-                                    <button 
+                                    <button
+                                        onClick={() => getPublicPageLink(page._id)} 
                                         className="bg-white hover:bg-blue-400 hover:text-white px-2 rounded mr-4">
                                         <i className='bx bx-copy'></i>
                                     </button>
