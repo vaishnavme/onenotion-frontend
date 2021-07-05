@@ -18,21 +18,30 @@ export default function AllPages() {
     
     return (
         <div>
-            <div className="text-2xl">Your Pages</div>
-            {pageStatus === "loading" && <Loader/>}
-            <div className="notesGrid my-4">
-                { notion &&
-                    notion.map((page) => (
-                        <PageCard 
-                            key={page._id}
-                            page={page}
-                            deletePageHandler={deletePageHandler}
-                            sharePageHandler={sharePageHandler}
-                            publicPage={publicPage}
-                        />
-                    ))
-                }
+            <div className="text-2xl font-semibold">Your Pages</div>
+            {
+                notion.length === 0 ?
+                <div className="mx-auto text-center my-12">
+                    <div className="font-semibold">You don't have any pages</div>
+                </div>
+            : 
+            <div>
+                {pageStatus === "loading" && <Loader/>}
+                <div className="notesGrid my-4">
+                    { notion &&
+                        notion.map((page) => (
+                            <PageCard 
+                                key={page._id}
+                                page={page}
+                                deletePageHandler={deletePageHandler}
+                                sharePageHandler={sharePageHandler}
+                                publicPage={publicPage}
+                            />
+                        ))
+                    }
+                </div>
             </div>
+            }
         </div>
     )
 }

@@ -15,7 +15,7 @@ export default function Account() {
                     <div className="text-sm font-medium">{getTimeandData()}</div>
                 </div>
                 <div className="my-8">
-                    <div className="text-2xl">Hi <span className="font-medium text-blue-600">{authUser.name}</span></div>
+                    <div className="text-2xl">Hi <span className="font-bold">{authUser.name}</span></div>
                     <div className="my-5 text-sm">
                         <label htmlFor="email" className="block text-black">Email</label>
                         <input 
@@ -29,31 +29,38 @@ export default function Account() {
                 </div>
                 <div>
                     <div className="text-sm font-medium">All Pages</div>
-                    <ul className="my-4">
-                        {
-                           notion && notion.map((page) => (
-                                <Link to={`/edit-page/${page._id}`} key={page._id}>
-                                    <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
-                                        <div className="font-medium">{page.title}</div>
-                                        <div className="text-xs font-medium">{page.date}</div>
-                                    </li>
-                                </Link>
-                            ))
-                        }
-                    </ul>
-                    <div className="text-sm font-medium">Public Pages</div>
-                    <ul className="my-4">
-                        {
-                           publicPage && publicPage.map((page) => (
-                                <Link to={`/edit-page/${page._id}`} key={page._id}>
-                                    <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
-                                        <div className="font-medium">{page.title}</div>
-                                        <div className="text-xs font-medium">{page.date}</div>
-                                    </li>
-                                </Link>
-                            ))
-                        }
-                    </ul>
+                    {
+                        notion.length === 0 ?
+                        <div className="font-semibold text-center">You don't have any pages</div>
+                        : 
+                        <div>
+                            <ul className="my-4">
+                            {
+                            notion && notion.map((page) => (
+                                    <Link to={`/edit-page/${page._id}`} key={page._id}>
+                                        <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
+                                            <div className="font-medium">{page.title}</div>
+                                            <div className="text-xs font-medium">{page.date}</div>
+                                        </li>
+                                    </Link>
+                                ))
+                            }
+                            </ul>
+                            <div className="text-sm font-medium">Public Pages</div>
+                            <ul className="my-4">
+                            {
+                            publicPage && publicPage.map((page) => (
+                                    <Link to={`/edit-page/${page._id}`} key={page._id}>
+                                        <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
+                                            <div className="font-medium">{page.title}</div>
+                                            <div className="text-xs font-medium">{page.date}</div>
+                                        </li>
+                                    </Link>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    }
                 </div>
             </div>
         </div>

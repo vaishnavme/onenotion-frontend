@@ -32,11 +32,16 @@ export default function Shared() {
                         type="text"
                         placeholder="Public page link"
                     />
+                    <button 
+                        onClick={() => navigator.clipboard.writeText(publicPageLink)}
+                        className="px-2 py-2 bg-white text-blue-600 hover:bg-blue-500 hover:text-white">
+                        Copy
+                    </button>
                 </div>
             </div>
             {
                 publicPage.length === 0 ? (
-                    <div className="text-3xl">No Public pAGES</div>
+                    <div className="font-semibold text-center">You don't have public pages.</div>
                 ) : (
                     <ul>
                     { publicPage &&
