@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/pages/pageSlice";
 import { NewPage, AllPages, Shared, Login, SignUp, Account, Page } from "./features";
 import { Navbar, PrivateRoute } from "./components";
+import axios from "axios";
+import { ToastContainer, Slide } from "react-toastify";
 import "./css/App.css";
 
 function App() {
@@ -40,6 +41,16 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
         </div>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          transition={Slide}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+      />
     </div>
   );
 }
