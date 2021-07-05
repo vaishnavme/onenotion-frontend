@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { alreadyExist } from "."
 
-export const PageCard = ({page, deletePageHandler, sharePageHandler}) => {
+export const PageCard = ({page, deletePageHandler, sharePageHandler, publicPage}) => {
     const [isMenuVisible, setMenuVisible] = useState(false)
     return (
     <div className="rounded-md bg-white shadow-md">
@@ -18,8 +19,9 @@ export const PageCard = ({page, deletePageHandler, sharePageHandler}) => {
                         className="border-b w-full px-2 hover:text-red-500 hover:bg-red-100 cursor-pointer">Delete</button>
 
                     <button 
+                        disabled={alreadyExist(publicPage, page._id) ? true : false}
                         onClick={() => sharePageHandler(page._id)}
-                        className="px-2 w-full hover:text-blue-500 hover:bg-blue-100 cursor-pointer">Share</button>
+                        className="px-2 w-full hover:text-blue-500 hover:bg-blue-100 cursor-pointer">{alreadyExist(publicPage, page._id) ? "Shared" : "Share"}</button>
                 </div>
             }
         </div>

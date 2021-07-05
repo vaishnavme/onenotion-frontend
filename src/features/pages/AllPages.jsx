@@ -5,7 +5,7 @@ import { PageCard } from "../../components";
 
 export default function AllPages() {
     const { notion } = useSelector((state) => state.page);
-   
+    const { publicPage } = useSelector((state) => state.share);
     const dispatch = useDispatch();
 
     const deletePageHandler = (pageId) => {
@@ -27,6 +27,7 @@ export default function AllPages() {
                             page={page}
                             deletePageHandler={deletePageHandler}
                             sharePageHandler={sharePageHandler}
+                            publicPage={publicPage}
                         />
                     ))
                 }

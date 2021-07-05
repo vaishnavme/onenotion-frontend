@@ -4,4 +4,4 @@ export { EditorContainer } from "./NewNoteComponents";
 export { PreviewContainer } from "./NewNoteComponents";
 export { PageCard } from "./PageCard"; 
 export { Page } from "./Page";
-export { emailRegex, getTimeandData } from "./utility";
+export { emailRegex, getTimeandData, alreadyExist } from "./utility";

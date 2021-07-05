@@ -13,3 +13,8 @@ export const getTimeandData = () => {
 
 // verify email regex
 export const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+// check for page alreday in array 
+export const alreadyExist = (collection, itemID) => {
+    return !!collection.find((item) => item._id === itemID);
+}
