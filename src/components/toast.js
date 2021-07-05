@@ -2,7 +2,8 @@ import { toast } from "react-toastify";
 
 export const successToast = (message) => {
   return toast.success(message, {
-    position: "bottom-right",
+    className: "bg-green-600 text-white rounded",
+    position: "top-right",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -15,7 +16,7 @@ export const successToast = (message) => {
 };
 export const successRemoveToast = (message) => {
   return toast.info(message, {
-    position: "bottom-right",
+    className: "bg-blue-500 text-white p-4 rounded",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -25,7 +26,6 @@ export const successRemoveToast = (message) => {
 
 export const errorToast = (message) => {
   return toast.warning(message, {
-    position: "bottom-right",
     autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,

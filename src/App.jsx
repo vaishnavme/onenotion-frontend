@@ -7,6 +7,7 @@ import { NewPage, AllPages, Shared, Login, SignUp, Account, Page } from "./featu
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
 import { ToastContainer, Slide } from "react-toastify";
+import { injectStyle } from "react-toastify/dist/inject-style";
 import "./css/App.css";
 
 function App() {
@@ -26,8 +27,12 @@ function App() {
     }
   },[status, authUserToken, dispatch, pageStatus, sharedStatus])
 
+  if (typeof window !== "undefined") {
+    injectStyle();
+  }
+
   return (
-    <div>
+    <div className="relative">
       {isAuthenticated && <Navbar />}
         <div className={` md:mt-0 ${isAuthenticated ? "mt-16 p-4 md:ml-52" : "" }`}>
             <Routes>
@@ -40,17 +45,17 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                transition={Slide}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+            />
         </div>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={2000}
-          transition={Slide}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-      />
     </div>
   );
 }
