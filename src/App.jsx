@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/pages/pageSlice";
-import { NewPage, AllPages, Shared, Login, SignUp, Account } from "./features";
-import { Navbar, PrivateRoute, Page } from "./components";
+import { NewPage, AllPages, Shared, Login, SignUp, Account, Page } from "./features";
+import { Navbar, PrivateRoute } from "./components";
 import "./css/App.css";
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
   const { pageStatus } = useSelector((state) => state.page)
   const { sharedStatus } = useSelector((state) => state.share)
   const dispatch = useDispatch();
-  
   useEffect(() => {
     if(status === "tokenReceived") {
       axios.defaults.headers.common["Authorization"] = authUserToken;
@@ -36,7 +35,7 @@ function App() {
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
                 <PrivateRoute path="/shared" element={<Shared />} />
-                <Route path="/public/:pageId" element={<Page/>}/>
+                <Route path="/public/:pageId" element={<Page authUserToken={authUserToken}/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>

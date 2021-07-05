@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveUserPage, updateUserPage } from "./pageSlice";
 import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
+import { BASE_URL } from "../../api/api";
 
 export default function NewPage() {
     const [isPreviewVisible, setPreviewVisible] = useState(false);
@@ -19,7 +20,7 @@ export default function NewPage() {
         if(pageId && location.pathname.includes('/edit-page')) {
             (async () => {
                 try {
-                    const {data: {page, success}} = await axios.get(`/pages/${pageId}`)
+                    const {data: {page, success}} = await axios.get(`${BASE_URL}/pages/${pageId}`)
                     if(success) {
                         setTitle(page.title)
                         setContent(page.content)
