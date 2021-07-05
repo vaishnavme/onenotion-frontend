@@ -7,7 +7,6 @@ export const getPublicPage = async() => {
         const response = await axios.get(`${BASE_URL}/public/pages`);
         return response.data.sharedPages
     } catch(err) {
-        errorToast("Error Ocuured. Please Try again after sometime.😥")
         console.log(err)
     }
 }

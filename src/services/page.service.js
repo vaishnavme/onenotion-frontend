@@ -7,7 +7,6 @@ export const getPages = async() => {
         const response = await axios.get(`${BASE_URL}/pages`)
         return response.data.pages
     } catch(err) {
-        errorToast("Error Ocuured. Please Try again after sometime.😥")
         console.log(err)
     }
 }
