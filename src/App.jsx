@@ -35,7 +35,7 @@ function App() {
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
                 <PrivateRoute path="/shared" element={<Shared />} />
-                <Route path="/public/:pageId" element={<Page authUserToken={authUserToken}/>}/>
+                <Route path="/public/:pageId" element={<Page/>}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
