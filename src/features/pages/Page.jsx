@@ -1,27 +1,33 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { PreviewContainer } from "../../components"
+import { PreviewContainer, Loader } from "../../components"
 import { BASE_URL } from "../../api/api";
 
 export default function Page() {
-    const [pageData, setPageData] = useState("")
+    const [pageData, setPageData] = useState("");
+    const [isLoading, setLoading] = useState(false);
     const { pageId } = useParams();
 
     useEffect(() => {
         (async () => {
             try {
+                setLoading(true)
                 const { data } = await axios.get(`${BASE_URL}/public/shared/${pageId}`)
                 setPageData(data.sharedPage.publicPage)
+                setLoading(false)
             } catch (err) {
                 console.error(err)
+            } finally {
+                setLoading(false)
             }
         })();
         // eslint-disable-next-line 
     },[pageId]);
     
     return (
-        <div className="m-auto w-full max-w-3xl my-4">
+        <div className="m-auto w-full max-w-3xl my-4 p-4">
+            <Loader/>
             <div className="text-sm font-medium text-center">{pageData.date}</div>
             {
                 pageData &&
