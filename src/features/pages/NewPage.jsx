@@ -3,11 +3,12 @@ import { useParams, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveUserPage, updateUserPage } from "./pageSlice";
-import { EditorContainer, PreviewContainer, getTimeandData } from "../../components";
+import { EditorContainer, PreviewContainer, getTimeandData, Loader } from "../../components";
 import { BASE_URL } from "../../api/api";
 
 export default function NewPage() {
     const [isPreviewVisible, setPreviewVisible] = useState(false);
+    const [isLoading, setLoading] = useState(false); 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
@@ -20,14 +21,18 @@ export default function NewPage() {
         if(pageId && location.pathname.includes('/edit-page')) {
             (async () => {
                 try {
+                    setLoading(true)
                     const {data: {page, success}} = await axios.get(`${BASE_URL}/pages/${pageId}`)
                     if(success) {
                         setTitle(page.title)
                         setContent(page.content)
                     }
+                    setLoading(false)
                 } catch (err) {
                     console.error(err)
-                } 
+                } finally {
+                    setLoading(false)
+                }
             })();
             setPreviewVisible(true)
         }
@@ -58,6 +63,10 @@ export default function NewPage() {
     }
 
     return (
+        <div>
+            {
+            isLoading ? <Loader/>
+        : 
         <div>
             <div className="flex justify-between items-center mb-6 flex-col md:flex-row">
                 <div>
@@ -97,6 +106,8 @@ export default function NewPage() {
                 }
             </div>
         </div>
+        }
+    </div>
     )
 }
 
