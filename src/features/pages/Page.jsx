@@ -30,7 +30,7 @@ export default function Page() {
     return (
         <div className="m-auto w-full max-w-3xl my-4 p-4">
             {isLoading && <Loader/>}
-            <div className="text-sm font-medium text-center">{pageData.date}</div>
+            <div className="text-sm font-medium my-3">{pageData.date}</div>
             {
                 pageData &&
                 <PreviewContainer 
