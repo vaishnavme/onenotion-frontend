@@ -59,27 +59,23 @@ export default function NewPage() {
 
     return (
         <div>
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex justify-between items-center mb-6 flex-col md:flex-row">
                 <div>
                     <div className="text-lg hidden md:block">{title.substring(0, 25) || "Untitled"}</div>
                 </div>
-                
-                <div>
-                    <span className="text-sm font-medium">{getTimeandData()}</span>
-                </div>
     
-                <div>
-                    <ul className="flex">
-                        <li className="mx-2 text-blue-600 bg-blue-50">
-                            <button onClick={previewHandler} className="py-1 px-2">
+                <div className="w-80 md:w-56">
+                    <ul className="flex justify-between">
+                        <li className="">
+                            <button onClick={previewHandler} className="text-blue-600 bg-blue-50 py-1 px-2">
                                 {isPreviewVisible ? "Edit" : "Preview"}
                             </button>
                         </li>
-                        <li className="mx-2 text-blue-600 bg-blue-50">
-                            <button onClick={() => newPostHandler()} className="py-1 px-2">Save</button>
+                        <li className="text-blue-600 bg-blue-50">
+                            <button onClick={() => newPostHandler()} className="text-blue-600 bg-blue-50 py-1 px-2">Save</button>
                         </li>
-                        <li className="mx-2 text-blue-600 bg-blue-50">
-                            <button onClick={() => clearNote()} className="py-1 px-2">Clear</button>
+                        <li className="text-blue-600 bg-blue-50">
+                            <button onClick={() => clearNote()} className="text-blue-600 bg-blue-50 py-1 px-2">Clear</button>
                         </li>
                     </ul>
                 </div>
