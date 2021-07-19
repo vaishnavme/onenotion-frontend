@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteSharedPage } from "./sharedSlice";
 
 export default function Shared() {
-    const { publicPage } = useSelector((state) => state.share);
+    const { publicPage, sharedStatus } = useSelector((state) => state.share);
     const [publicPageLink, setPublicPageLink] = useState("");
     const dispatch = useDispatch(); 
 
@@ -58,7 +58,7 @@ export default function Shared() {
                                     <button 
                                         onClick={() => deletePublicPage(page._id)}
                                         className="bg-white hover:bg-red-400 hover:text-white px-2 rounded">
-                                        <i className='bx bx-trash'></i>
+                                        {sharedStatus === "removing" ? <i className="animate-spin bx bx-loader-alt font-thin"></i> : <i className='bx bx-trash'></i>}
                                     </button>
                                 </div>
                             </li>

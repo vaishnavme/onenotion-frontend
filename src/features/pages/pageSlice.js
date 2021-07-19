@@ -55,33 +55,34 @@ export const pageSlice = createSlice({
         },
 
         [saveUserPage.pending]: (state) => {
-            state.pageStatus = "loading";
+            state.pageStatus = "saving";
         },
         [saveUserPage.fulfilled]: (state, action) => {
             state.notion.push(action.payload)
-            state.pageStatus = "pageLoaded"
+            state.pageStatus = "saved"
         },
         [saveUserPage.rejected]: (state) => {
             state.pageStatus = "error"
         },
 
         [updateUserPage.pending]: (state) => {
-            state.pageStatus = "loading";
+            state.pageStatus = "updating";
         },
         [updateUserPage.fulfilled]: (state) => {
-            state.pageStatus = "pageLoaded"
+            state.pageStatus = "updated"
         },
         [updateUserPage.rejected]: (state) => {
             state.pageStatus = "error"
         },
 
         [deleteUserPage.pending]: (state) => {
-            state.pageStatus = "loading";
+            state.pageStatus = "deleting";
         },
         [deleteUserPage.fulfilled]: (state, action) => {
             const { payload } = action;
             state.notion.splice(
                 state.notion.findIndex((page) => page._id === payload),1)
+            state.pageStatus = "Fulfilled"
         },
         [deleteUserPage.rejected]: (state) => {
             state.pageStatus = "error"

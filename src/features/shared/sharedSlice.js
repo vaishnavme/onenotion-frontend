@@ -48,28 +48,27 @@ export const sharedSlice = createSlice({
         },
 
         [sharePage.pending]: (state) => {
-            state.sharedPages = "loading"
+            state.sharedStatus = "sharing"
         },
         [sharePage.fulfilled]: (state, action) => {
             state.publicPage.push(action.payload)
             state.sharedStatus = "pageLoaded"
         },
         [sharePage.rejected]: (state) => {
-            state.sharedPages = "error"
+            state.sharedStatus = "error"
         },
 
         [deleteSharedPage.pending]: (state) => {
-            state.sharedPages = "loading"
+            state.sharedStatus = "removing"
         },
         [deleteSharedPage.fulfilled]: (state, action) => {
             const { payload } = action;
-            console.log(state.sharedPages)
             state.publicPage.splice(
                 state.publicPage.findIndex((page) => page._id === payload),1)
-                state.sharedStatus = "pageLoaded"
+            state.sharedStatus = "Fulfilled"
         },
         [deleteSharedPage.rejected]: (state) => {
-            state.sharedPages = "error"
+            state.sharedStatus = "error"
         }
     }
 })

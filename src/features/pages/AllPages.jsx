@@ -5,6 +5,7 @@ import { PageCard, Loader } from "../../components";
 
 export default function AllPages() {
     const { notion, pageStatus } = useSelector((state) => state.page);
+    const { sharedStatus } = useSelector((state) => state.share)
     const { publicPage } = useSelector((state) => state.share);
     const dispatch = useDispatch();
 
@@ -18,6 +19,7 @@ export default function AllPages() {
     
     return (
         <div>
+            {pageStatus === "loading" && <Loader/>}
             <div className="text-2xl font-semibold">Your Pages</div>
             {
                 notion.length === 0 ?
@@ -26,7 +28,6 @@ export default function AllPages() {
                 </div>
             : 
             <div>
-                {pageStatus === "loading" && <Loader/>}
                 <div className="notesGrid my-4">
                     { notion &&
                         notion.map((page) => (
@@ -36,6 +37,8 @@ export default function AllPages() {
                                 deletePageHandler={deletePageHandler}
                                 sharePageHandler={sharePageHandler}
                                 publicPage={publicPage}
+                                pageStatus={pageStatus}
+                                sharedStatus={sharedStatus}
                             />
                         ))
                     }

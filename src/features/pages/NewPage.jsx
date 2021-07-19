@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { saveUserPage, updateUserPage } from "./pageSlice";
 import { EditorContainer, PreviewContainer, getTimeandData, Loader } from "../../components";
 import { BASE_URL } from "../../api/api";
 
 export default function NewPage() {
+    const { pageStatus } = useSelector((state) => state.page)
     const [isPreviewVisible, setPreviewVisible] = useState(false);
     const [isLoading, setLoading] = useState(false); 
     const [title, setTitle] = useState("");
@@ -38,7 +39,7 @@ export default function NewPage() {
         }
     },[location, pageId])
 
-    const newPostHandler = () => {
+    const newPageHandler = async() => {
         const page = {
             title: title || "Untitled",
             date: getTimeandData(),
@@ -47,11 +48,15 @@ export default function NewPage() {
             content: content
         }
         if(pageId && location.pathname.includes('/edit-page')) {
-            dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
-            navigate("/")
+            await dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
+            if(pageStatus === "updated") {
+                navigate("/")
+            }
         } else {
-            dispatch(saveUserPage(page));
-            navigate("/")
+            await dispatch(saveUserPage(page));
+            if(pageStatus === "saved") {
+                navigate("/")
+            }
         }
     }
 
@@ -81,7 +86,11 @@ export default function NewPage() {
                             </button>
                         </li>
                         <li className="text-blue-600 bg-blue-50">
-                            <button onClick={() => newPostHandler()} className="text-blue-600 bg-blue-50 py-1 px-2">Save</button>
+                            <button onClick={() => newPageHandler()} className="text-blue-600 bg-blue-50 py-1 px-2">
+                                { (pageStatus === "saving" || pageStatus === "updating") 
+                                ? <i className="animate-spin bx bx-loader-alt font-thin"></i>  
+                                : "Save"}
+                            </button>
                         </li>
                         <li className="text-blue-600 bg-blue-50">
                             <button onClick={() => clearNote()} className="text-blue-600 bg-blue-50 py-1 px-2">Clear</button>
