@@ -39,7 +39,7 @@ export default function NewPage() {
         }
     },[location, pageId])
 
-    const newPageHandler = async() => {
+    const newPageHandler = () => {
         const page = {
             title: title || "Untitled",
             date: getTimeandData(),
@@ -48,12 +48,12 @@ export default function NewPage() {
             content: content
         }
         if(pageId && location.pathname.includes('/edit-page')) {
-            await dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
+            dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
             if(pageStatus === "updated") {
                 navigate("/")
             }
         } else {
-            await dispatch(saveUserPage(page));
+            dispatch(saveUserPage(page));
             if(pageStatus === "saved") {
                 navigate("/")
             }
