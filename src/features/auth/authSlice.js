@@ -1,28 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { loginUser, signupUser} from "./request";
 import axios from "axios";
-import { logInUser, signUpUser } from "../../services/auth.service";
-
-export const logInUserWithCredentials = createAsyncThunk(
-    "auth/logInUserWithCredentials",
-    async({email, password}) => {
-        const {data: {success, user, token, message}} = await logInUser({email, password})
-        if(!success) {
-            throw new Error(message);
-        }
-        return {user, token} 
-    }
-)
-
-export const signUpUserWithCredentials = createAsyncThunk(
-    "auth/signUpUserWithCredentials",
-    async({name, email, password}) => {
-        const {data: {success, user, token, message}} = await signUpUser({name, email, password})
-        if(!success) {
-            throw new Error(message);
-        }
-        return {user, token}
-    }
-)
 
 export const authSlice = createSlice({
     name: "auth",
@@ -51,10 +29,10 @@ export const authSlice = createSlice({
         }
     },
     extraReducers: {
-        [logInUserWithCredentials.pending]: (state) => {
+        [loginUser.pending]: (state) => {
             state.status = "loading"
         },
-        [logInUserWithCredentials.fulfilled]: (state, action) => {
+        [loginUser.fulfilled]: (state, action) => {
             const {user, token} = action.payload;
             state.authUser = user;
             state.authUserToken = token;
@@ -65,14 +43,14 @@ export const authSlice = createSlice({
             localStorage.setItem("authUserToken", JSON.stringify(token));
             axios.defaults.headers.common["Authorization"] = token
         },
-        [logInUserWithCredentials.rejected]: (state) => {
+        [loginUser.rejected]: (state) => {
             state.status = "error"
         },
 
-        [signUpUserWithCredentials.pending]: (state) => {
+        [signupUser.pending]: (state) => {
             state.status = "loading"
         },
-        [signUpUserWithCredentials.fulfilled]: (state, action) => {
+        [signupUser.fulfilled]: (state, action) => {
             const {user, token} = action.payload;
             state.authUser = user;
             state.authUserToken = token;
@@ -83,7 +61,7 @@ export const authSlice = createSlice({
             localStorage.setItem("isAuthenticated", JSON.stringify(true));
             axios.defaults.headers.common["Authorization"] = token
         },
-        [signUpUserWithCredentials.rejected]: (state) => {
+        [signupUser.rejected]: (state) => {
             state.status = "error"
         }
     }

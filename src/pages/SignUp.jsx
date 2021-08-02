@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signUpUserWithCredentials, resetStatus } from "./authSlice"
-import { emailRegex } from "../../components";
+import { signupUser } from "../features/auth/request";
+import { resetStatus } from "../features/auth/authSlice"
+import { emailRegex } from "../components";
 
 export default function SignUp() {
     const { status, isAuthenticated } = useSelector((state) => state.auth);
@@ -23,7 +24,7 @@ export default function SignUp() {
 
     const signupHandler = () => {
         if(isValid) {
-            dispatch(signUpUserWithCredentials({name, email, password}))
+            dispatch(signupUser({name, email, password}))
         } 
     }
 

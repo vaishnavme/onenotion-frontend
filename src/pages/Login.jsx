@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logInUserWithCredentials, resetStatus } from "./authSlice";
+import { loginUser } from "../features/auth/request";
+import { resetStatus } from "../features/auth/authSlice";
 
 export default function Login() {
     const { status, isAuthenticated } = useSelector((state) => state.auth);
@@ -10,12 +11,8 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const logInHandler = async() => {
-        await dispatch(
-            logInUserWithCredentials({
-                email,
-                password
-            })
+    const logInHandler = () => {
+        dispatch(loginUser({email,password})
         )
     }
 

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { getTimeandData } from "../../components";
+import { getTimeandData } from "../components";
 import { Link } from "react-router-dom";
 
 export default function Account() {
