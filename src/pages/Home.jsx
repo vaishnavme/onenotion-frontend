@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserPage } from "./pageSlice";
-import { sharePage } from "../shared/sharedSlice";
-import { PageCard, Loader } from "../../components";
+import { deleteUserPage } from "../features/pages/pageSlice";
+import { sharePage } from "../features/shared/sharedSlice";
+import { PageCard, Loader } from "../components";
 
 export default function AllPages() {
-    const { notion, pageStatus } = useSelector((state) => state.page);
+    const { pages, pageStatus } = useSelector((state) => state.page);
     const { sharedStatus } = useSelector((state) => state.share)
     const { publicPage } = useSelector((state) => state.share);
     const dispatch = useDispatch();
@@ -22,15 +22,15 @@ export default function AllPages() {
             {pageStatus === "loading" && <Loader/>}
             <div className="text-2xl font-semibold">Your Pages</div>
             {
-                notion.length === 0 ?
+                pages.length === 0 ?
                 <div className="mx-auto text-center my-12">
                     <div className="font-semibold">You don't have any pages</div>
                 </div>
             : 
             <div>
                 <div className="notesGrid my-4">
-                    { notion &&
-                        notion.map((page) => (
+                    { pages &&
+                        pages.map((page) => (
                             <PageCard 
                                 key={page._id}
                                 page={page}

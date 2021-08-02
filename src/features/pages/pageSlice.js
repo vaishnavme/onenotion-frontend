@@ -1,36 +1,52 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { deletePage, getPages, savePage, updatePage } from "../../services/page.service";
+import axios from "axios";
+import { BASE_URL } from "../../api/api";
 
-export const getUserPages = createAsyncThunk(
-    "pages/getUserPages",
+export const getUserPages = createAsyncThunk("pages/getUserPages",
     async() => {
-        const pages = await getPages();
-        return pages
+        try {
+            const response = await axios.get(`${BASE_URL}/pages`)
+            return response.data.pages
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 )
 
-export const saveUserPage = createAsyncThunk(
-    "pages/saveUserPage",
+export const saveUserPage = createAsyncThunk("pages/saveUserPage",
     async(page) => {
-        const savedPage = await savePage(page);
-        return savedPage;
+        try {
+            const response = await axios.post(`${BASE_URL}/pages`, {page: page})
+            return response.data.savedPage
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 )
 
-export const updateUserPage = createAsyncThunk(
-    "pages/updateUserPage",
+export const updateUserPage = createAsyncThunk("pages/updateUserPage",
     async(pageUpdate, pageId) => {
-        const updated = await updatePage(pageUpdate, pageId);
-        return updated
+        try {
+            const response = await axios.post(`${BASE_URL}/pages/${pageId}`, {pageUpdates: pageUpdate})
+            return response.data.updated
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 )
 
-export const deleteUserPage = createAsyncThunk(
-    "pages/deleteUserPage",
+export const deleteUserPage = createAsyncThunk("pages/deleteUserPage",
     async(pageId) => {
-        // eslint-disable-next-line
-        const data = await deletePage(pageId);
-        return pageId
+        try {
+            const response = await axios.delete(`${BASE_URL}/pages/${pageId}`);
+            return response.data.pageId
+        }
+        catch(error) {
+            console.log(error)
+        }
     }
 )
 
@@ -38,7 +54,7 @@ export const pageSlice = createSlice({
     name: "pages",
     initialState: {
         pageStatus: "idle",
-        notion: [],
+        pages: [],
     },
     reducers: {},
     extraReducers: {
@@ -47,7 +63,7 @@ export const pageSlice = createSlice({
         },
         [getUserPages.fulfilled]: (state, action) => {
             const { payload } = action;
-            state.notion = payload
+            state.pages = payload
             state.pageStatus = "pageLoaded"
         },
         [getUserPages.rejected]: (state) => {
@@ -58,7 +74,7 @@ export const pageSlice = createSlice({
             state.pageStatus = "saving";
         },
         [saveUserPage.fulfilled]: (state, action) => {
-            state.notion.push(action.payload)
+            state.pages.push(action.payload)
             state.pageStatus = "saved"
         },
         [saveUserPage.rejected]: (state) => {
@@ -80,8 +96,8 @@ export const pageSlice = createSlice({
         },
         [deleteUserPage.fulfilled]: (state, action) => {
             const { payload } = action;
-            state.notion.splice(
-                state.notion.findIndex((page) => page._id === payload),1)
+            state.pages.splice(
+                state.pages.findIndex((page) => page._id === payload),1)
             state.pageStatus = "Fulfilled"
         },
         [deleteUserPage.rejected]: (state) => {

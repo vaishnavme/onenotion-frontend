@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/pages/pageSlice";
-import { NewPage, AllPages, Shared, Page } from "./features";
-import { Login, SignUp, Account } from "./pages";
+import { Shared,  } from "./features";
+import { Login, SignUp, Account, Home, NewPage, Page } from "./pages";
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { injectStyle } from "react-toastify/dist/inject-style";
 import "./css/App.css";
 
@@ -37,7 +37,7 @@ function App() {
       {isAuthenticated && <Navbar />}
         <div className={` md:mt-0 ${isAuthenticated ? "mt-16 p-4 md:ml-52" : "" }`}>
             <Routes>
-                <PrivateRoute path="/" element={<AllPages />} />
+                <PrivateRoute path="/" element={<Home />} />
                 <PrivateRoute path="/create" element={<NewPage />} />
                 <PrivateRoute path="/edit-page/:pageId" element={<NewPage />} />
                 <PrivateRoute path="/account" element={<Account />} />
@@ -46,16 +46,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                transition={Slide}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-            />
+            <ToastContainer/>
         </div>
     </div>
   );
