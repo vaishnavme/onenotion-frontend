@@ -1,28 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPublicPage, pagePublish, deletePublish } from "../../services/shared.service";
+import axios from "axios";
+import { BASE_URL } from "../../api/api";
 
 export const getSharedPages = createAsyncThunk(
     "shared/getSharedPages",
     async() => {
-        const sharedPages = await getPublicPage();
-        return sharedPages
+        try {
+            const response = await axios.get(`${BASE_URL}/public/pages`);
+            return response.data.sharedPages
+        } catch(err) {
+            console.log(err)
+        }
     }
 )
 
 export const sharePage = createAsyncThunk(
     "shared/sharePage",
     async(pageId) => {
-        const data = await pagePublish(pageId);
-        return data
+        try {
+            const response = await axios.post(`${BASE_URL}/public/${pageId}`)
+            return response.sharedPage.publicPage
+        } catch(err) {
+            console.log(err)
+        }
     }
 )
 
 export const deleteSharedPage = createAsyncThunk(
     "shared/deleteSharedPage",
     async(pageId) => {
-        // eslint-disable-next-line
-        const data = await deletePublish(pageId);
-        return pageId
+        try {
+            const response = await axios.delete(`${BASE_URL}/public/${pageId}`);
+            return response.data.pageId
+        } catch(err) {
+            console.log(err)
+        }
     }
 )
 

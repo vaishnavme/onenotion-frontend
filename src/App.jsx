@@ -2,9 +2,8 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { getSharedPages } from "./features/shared/sharedSlice";
-import { getUserPages } from "./features/pages/pageSlice";
-import { Shared,  } from "./features";
-import { Login, SignUp, Account, Home, NewPage, Page } from "./pages";
+import { getUserPages } from "./features/notions/notionSlice";
+import { Login, SignUp, Account, Home, NewPage, Page, Shared } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
@@ -13,7 +12,7 @@ import "./css/App.css";
 
 function App() {
   const { status, authUserToken, isAuthenticated } = useSelector((state) => state.auth);
-  const { pageStatus } = useSelector((state) => state.page)
+  const { pageStatus } = useSelector((state) => state.notion)
   const { sharedStatus } = useSelector((state) => state.share)
   const dispatch = useDispatch();
   useEffect(() => {

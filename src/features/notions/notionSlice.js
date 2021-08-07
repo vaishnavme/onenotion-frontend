@@ -51,7 +51,7 @@ export const deleteUserPage = createAsyncThunk("pages/deleteUserPage",
 )
 
 export const pageSlice = createSlice({
-    name: "pages",
+    name: "notions",
     initialState: {
         pageStatus: "idle",
         pages: [],

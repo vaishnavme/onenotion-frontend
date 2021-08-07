@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { saveUserPage, updateUserPage } from "../features/pages/pageSlice";
-import { EditorContainer, PreviewContainer, getTimeandData, Loader } from "../components";
-import { BASE_URL } from "../api/api";
+import { saveUserPage, updateUserPage } from "../notionSlice";
+import { EditorContainer, PreviewContainer, getTimeandData, Loader } from "../../../components";
+import { BASE_URL } from "../../../api/api";
 
 export default function NewPage() {
-    const { pageStatus } = useSelector((state) => state.page)
+    const { pageStatus } = useSelector((state) => state.notions)
     const [isPreviewVisible, setPreviewVisible] = useState(false);
     const [isLoading, setLoading] = useState(false); 
     const [title, setTitle] = useState("");

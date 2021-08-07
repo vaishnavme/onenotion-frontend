@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authSliceReducer from "../features/auth/authSlice";
-import pageSliceReducer from "../features/pages/pageSlice";
+import notionSliceReducer from "../features/notions/notionSlice";
 import sharedPageReducer from "../features/shared/sharedSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authSliceReducer,
-    page: pageSliceReducer,
+    notion: notionSliceReducer,
     share: sharedPageReducer
   },
 });

@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { signupUser } from "../features/auth/request";
-import { resetStatus } from "../features/auth/authSlice"
-import { emailRegex } from "../components";
+import { signupUser, resetStatus } from "../authSlice"
+import { emailRegex } from "../../../components";
 
 export default function SignUp() {
     const { status, isAuthenticated } = useSelector((state) => state.auth);

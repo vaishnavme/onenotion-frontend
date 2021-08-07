@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { PreviewContainer, Loader } from "../components"
-import { BASE_URL } from "../api/api"
+import { PreviewContainer, Loader } from "../../../components"
+import { BASE_URL } from "../../../api/api"
 
 export default function Page() {
     const [pageData, setPageData] = useState("");

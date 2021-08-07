@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { deleteUserPage } from "../features/pages/pageSlice";
-import { sharePage } from "../features/shared/sharedSlice";
-import { PageCard, Loader } from "../components";
+import { deleteUserPage } from "../notionSlice";
+import { sharePage } from "../../shared/sharedSlice";
+import { PageCard, Loader } from "../../../components";
 
 export default function AllPages() {
     const { pages, pageStatus } = useSelector((state) => state.page);
