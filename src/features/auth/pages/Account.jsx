@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Account() {
     const { authUser } = useSelector(state => state.auth);
-    const { notion } = useSelector((state) => state.page);
+    const { pages } = useSelector((state) => state.notion);
     const { publicPage } = useSelector((state) => state.share);
 
     return (
@@ -30,13 +30,13 @@ export default function Account() {
                 <div>
                     <div className="text-sm font-medium">All Pages</div>
                     {
-                        notion.length === 0 ?
+                        pages.length === 0 ?
                         <div className="font-semibold text-center">You don't have any pages</div>
                         : 
                         <div>
                             <ul className="my-4">
                             {
-                            notion && notion.map((page) => (
+                            pages && pages?.map((page) => (
                                     <Link to={`/edit-page/${page._id}`} key={page._id}>
                                         <li className="flex justify-between items-center p-4 my-2 rounded bg-gray-50 hover:bg-blue-100">
                                             <div className="font-medium">{page.title}</div>

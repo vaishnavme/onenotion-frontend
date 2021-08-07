@@ -4,7 +4,7 @@ import { sharePage } from "../../shared/sharedSlice";
 import { PageCard, Loader } from "../../../components";
 
 export default function AllPages() {
-    const { pages, pageStatus } = useSelector((state) => state.page);
+    const { pages, pageStatus } = useSelector((state) => state.notion);
     const { sharedStatus } = useSelector((state) => state.share)
     const { publicPage } = useSelector((state) => state.share);
     const dispatch = useDispatch();

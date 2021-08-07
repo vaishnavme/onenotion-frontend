@@ -7,7 +7,7 @@ import { EditorContainer, PreviewContainer, getTimeandData, Loader } from "../..
 import { BASE_URL } from "../../../api/api";
 
 export default function NewPage() {
-    const { pageStatus } = useSelector((state) => state.notions)
+    const { pageStatus } = useSelector((state) => state.notion)
     const [isPreviewVisible, setPreviewVisible] = useState(false);
     const [isLoading, setLoading] = useState(false); 
     const [title, setTitle] = useState("");
