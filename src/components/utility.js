@@ -16,5 +16,5 @@ export const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(
 
 // check for page alreday in array 
 export const alreadyExist = (collection, itemID) => {
-    return !!collection.find((item) => item._id === itemID);
+    return !!collection?.find((item) => item._id === itemID);
 }

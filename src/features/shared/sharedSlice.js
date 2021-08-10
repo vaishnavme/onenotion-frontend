@@ -19,7 +19,7 @@ export const sharePage = createAsyncThunk(
     async(pageId) => {
         try {
             const response = await axios.post(`${BASE_URL}/public/${pageId}`)
-            return response.sharedPage.publicPage
+            return response.data.sharedPage.publicPage
         } catch(err) {
             console.log(err)
         }
@@ -51,8 +51,7 @@ export const sharedSlice = createSlice({
             state.sharedStatus = "loading"
         },
         [getSharedPages.fulfilled]: (state, action) => {
-            const { payload } = action;
-            state.publicPage = payload;
+            state.publicPage = action.payload;
             state.sharedStatus = "pageLoaded"
         },
         [getSharedPages.rejected]: (state) => {
