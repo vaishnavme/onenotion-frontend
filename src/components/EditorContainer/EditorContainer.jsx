@@ -1,19 +1,5 @@
 import { Fragment } from "react";
 import TextareaAutosize from 'react-autosize-textarea';
-// import styles from "../css/Markdown.module.css";
-
-const MarkdownIt = require('markdown-it')({
-    html: true,
-    linkify: true,
-    typographer: true,
-    breaks: true,
-    quotes: '“”‘’',
-    highlight: function(code, lang) {
-        const hljs = require('highlight.js');
-        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-        return hljs.highlight(code, { language }).value;
-    },
-});
 
 export const EditorContainer = ({title, content, setTitle, setContent}) => {
     return (
