@@ -35,7 +35,6 @@ export default function CreatePage() {
         }
     }
 
-    console.log(errorMessage)
 
     useEffect(() => {
         if(pageId && location.pathname.includes('/draft') && authUserToken) {
@@ -46,10 +45,10 @@ export default function CreatePage() {
                     setContent(response.data.page.content)
                 } catch (err) {
                     console.error(err)
+                    setErrorMessage(err)
                 }
             })();
-        }
-        
+        } 
     },[location, pageId, authUserToken])
 
     useEffect(() => {
@@ -60,8 +59,6 @@ export default function CreatePage() {
         }
         // eslint-disable-next-line
     }, [currentPage])
-
-   
 
     return (    
         <div>

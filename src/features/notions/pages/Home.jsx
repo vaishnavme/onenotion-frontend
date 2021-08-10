@@ -22,7 +22,7 @@ export default function AllPages() {
             {pageStatus === "loading" && <Loader/>}
             <div className="text-2xl font-semibold">Your Pages</div>
             {
-                notion.length === 0 ?
+                notion?.length === 0 ?
                 <div className="mx-auto text-center my-12">
                     <div className="font-semibold">You don't have any pages</div>
                 </div>
