@@ -5,13 +5,13 @@ import { PreviewContainer, Loader, ErrorToast } from "../../../components"
 import { BASE_URL } from "../../../api/api"
 
 export default function Page() {
-    const [pageData, setPageData] = useState("");
+    const [pageData, setPageData] = useState(null);
     const [errorMessage, setErrorMessage] = useState("")
     const [isLoading, setLoading] = useState(false);
     const { pageId } = useParams();
     
     useEffect(() => {
-        if(pageData.length === 0) {
+        if(pageData === null) {
             (async () => {
                 try {
                     setLoading(true)
@@ -32,14 +32,18 @@ export default function Page() {
     return (
         <div className="m-auto w-full max-w-3xl my-4 p-4">
             {isLoading && <Loader/>}
-            <div className="text-sm font-medium my-3">{pageData.date}</div>
             {
-                pageData &&
-                <PreviewContainer 
-                    title={pageData.title}
-                    content={pageData.content}
-                />
+                pageData === null
+                ?   <div>Page is no longer avaliable</div>
+                :   <>
+                    <div className="text-sm font-medium my-3">{pageData?.date}</div>
+                    <PreviewContainer 
+                        title={pageData.title}
+                        content={pageData.content}
+                    />
+                </>
             }
+
             <ErrorToast 
                 message={errorMessage}
                 setMessage={setErrorMessage}
