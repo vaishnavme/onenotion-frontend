@@ -13,6 +13,7 @@
     "history": "^5.0.0",
     "i": "^0.3.6",
     "markdown-it": "^12.1.0",
+    "markdown-to-text": "^0.1.1",
     "marked": "^2.1.3",
     "npm": "^7.19.0",
     "react": "^17.0.2",

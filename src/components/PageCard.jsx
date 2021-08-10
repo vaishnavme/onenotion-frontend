@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { alreadyExist } from "."
+import removeMarkdown from "markdown-to-text";
 
 export const PageCard = ({page, deletePageHandler, sharePageHandler, publicPage, pageStatus, sharedStatus}) => {
     const [isMenuVisible, setMenuVisible] = useState(false);
+
+    const plainTextContent = removeMarkdown(page.content)
+
     return (
     <div className="rounded-md bg-white shadow-md">
         <div className="relative flex justify-between bg-gray-50 p-2 items-center">
@@ -34,7 +38,7 @@ export const PageCard = ({page, deletePageHandler, sharePageHandler, publicPage,
         <Link to={`/draft/${page._id}`}>
             <div className="px-4 pb-4 rounded-md">
                 <div className="text-3xl font-bold my-1 note-title">{page.title}</div>
-                <div className="shortPage">{page.content}</div>
+                <div className="shortPage">{plainTextContent}</div>
             </div>
         </Link>
     </div>
