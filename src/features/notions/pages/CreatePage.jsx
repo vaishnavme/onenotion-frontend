@@ -2,15 +2,17 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from "axios";
-import { EditorContainer, PreviewContainer,getTimeandData } from "../../../components";
+import { EditorContainer, PreviewContainer,getTimeandData, ErrorToast } from "../../../components";
 import { saveUserPage, updateUserPage } from "../notionSlice";
 import { BASE_URL } from "../../../api/api";
 
 export default function CreatePage() {
-    const { pageStatus, currentPage } = useSelector(state => state.notion)
+    const { pageStatus, currentPage } = useSelector(state => state.notion);
+    const { authUserToken } = useSelector(state => state.auth);
     const [title, setTitle] = useState("");
-    const [content, setContent] = useState("")
-    const [isPreviewEnable, setPreviewEnable] = useState(false)
+    const [content, setContent] = useState("");
+    const [isPreviewEnable, setPreviewEnable] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("")
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -18,11 +20,14 @@ export default function CreatePage() {
     const { pageId } = useParams();
 
     const savePageHandler = () => {
+        if(title === "" && content === "") return setErrorMessage("Cannot save empty page!");
+
         let page = {
             title: title || "Untitled",
             date: getTimeandData(),
             content: content
         }
+
         if(pageId && location.pathname.includes('/draft')) {
             dispatch(updateUserPage({pageUpdate: page, pageId: pageId}))
         } else {
@@ -30,20 +35,22 @@ export default function CreatePage() {
         }
     }
 
+    console.log(errorMessage)
+
     useEffect(() => {
-        if(pageId && location.pathname.includes('/draft')) {
+        if(pageId && location.pathname.includes('/draft') && authUserToken) {
             (async () => {
                 try {
                     const response = await axios.get(`${BASE_URL}/pages/${pageId}`)
-                        setTitle(response.data.page.title)
-                        setContent(response.data.page.content)
+                    setTitle(response.data.page.title)
+                    setContent(response.data.page.content)
                 } catch (err) {
                     console.error(err)
                 }
             })();
         }
-        // eslint-disable-next-line
-    },[location, pageId])
+        
+    },[location, pageId, authUserToken])
 
     useEffect(() => {
         if(currentPage !== null) {
@@ -99,6 +106,12 @@ export default function CreatePage() {
                     }
                 </div>
             </div>
+            {
+                <ErrorToast 
+                    setMessage={setErrorMessage}
+                    message={errorMessage}
+                />
+            }
         </div>
     )
 }
