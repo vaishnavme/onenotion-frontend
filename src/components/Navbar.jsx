@@ -57,10 +57,6 @@ export const Navbar = () => {
                                     <i className='bx bx-intersect text-2xl p-1'></i>
                                     <span className="text-base whitespace-nowrap ml-4">Shared</span>
                                 </NavLink>
-                                <NavLink to="/account" activeStyle={activeColor} className="flex items-center p-1">
-                                    <i className="bx bx-user text-2xl p-1"></i>
-                                    <span className="text-base whitespace-nowrap ml-4">Account</span>
-                                </NavLink>
                             </div>
                         </div>
                     </div>

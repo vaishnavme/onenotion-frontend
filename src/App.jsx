@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/notions/notionSlice";
-import { Login, SignUp, Account, Home, Page, Shared, CreatePage } from "./features";
+import { Login, SignUp, Home, Page, Shared, CreatePage } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
@@ -39,7 +39,6 @@ function App() {
                 <PrivateRoute path="/" element={<Home />} />
                 <PrivateRoute path="/create" element={<CreatePage />} />
                 <PrivateRoute path="/draft/:pageId" element={<CreatePage />} />
-                <PrivateRoute path="/account" element={<Account />} />
                 <PrivateRoute path="/shared" element={<Shared />} />
                 <Route path="/public/:pageId" element={<Page/>}/>
                 <Route path="/login" element={<Login />} />
