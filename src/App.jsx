@@ -6,8 +6,6 @@ import { getUserPages } from "./features/notions/notionSlice";
 import { Login, SignUp, Home, Page, Shared, CreatePage } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
-import { injectStyle } from "react-toastify/dist/inject-style";
 import "./css/App.css";
 
 function App() {
@@ -27,10 +25,6 @@ function App() {
     }
   },[status, authUserToken, dispatch, pageStatus, sharedStatus])
 
-  if (typeof window !== "undefined") {
-    injectStyle();
-  }
-
   return (
     <div className="relative">
       {isAuthenticated && <Navbar />}
@@ -44,7 +38,6 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>
-            <ToastContainer/>
         </div>
     </div>
   );
