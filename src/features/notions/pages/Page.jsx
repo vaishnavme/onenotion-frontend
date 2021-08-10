@@ -16,7 +16,7 @@ export default function Page() {
                 try {
                     setLoading(true)
                     const response = await axios.get(`${BASE_URL}/public/shared/${pageId}`)
-                        setPageData(response.data.sharedPage.publicPage)
+                        setPageData(response.data.sharedPage)
                         setLoading(false)
                 } catch (err) {
                     console.error(err)
@@ -37,9 +37,12 @@ export default function Page() {
                     <>
                         <div className="text-sm font-medium my-3">{pageData?.date}</div>
                         <PreviewContainer 
-                            title={pageData.title}
-                            content={pageData.content}
+                            title={pageData.publicPage.title}
+                            content={pageData.publicPage.content}
                         />
+                        <div className="bg-yellow-50 p-3 text-yellow-600 text-center font-semibold rounded">
+                            Page shared by {pageData.sharedBy.name}
+                        </div>
                     </>
             }
 
