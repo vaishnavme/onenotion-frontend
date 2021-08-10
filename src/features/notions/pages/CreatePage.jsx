@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from "axios";
-import { EditorContainer, getTimeandData } from "../../../components";
+import { EditorContainer, PreviewContainer,getTimeandData } from "../../../components";
 import { saveUserPage, updateUserPage } from "../notionSlice";
 import { BASE_URL } from "../../../api/api";
-
-
 
 export default function CreatePage() {
     const { pageStatus, currentPage } = useSelector(state => state.notion)
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("")
+    const [isPreviewEnable, setPreviewEnable] = useState(false)
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -64,23 +63,40 @@ export default function CreatePage() {
                 <div>
                     <button 
                         onClick={() => savePageHandler()}
-                        className="text-gray-500 text-blue-500 border py-1 px-2 rounded border-blue-500">
+                        className="text-gray-500 text-blue-500 border py-1 w-24 rounded border-blue-500 focus:outline-none hover:bg-blue-500 hover:text-white">
                         {
                             pageStatus === "saving" ?
-                            <span className="flex item-center"><i className={`bx bx-loader-alt animate-spin text-xl mr-2`}></i> Saving</span>
-                            :   <span className="flex item-center"><i className={`bx bx-cloud text-xl mr-2`}></i> Save</span>
+                            <span className="flex item-center justify-center"><i className={`bx bx-loader-alt animate-spin text-xl mr-2`}></i> Saving</span>
+                            :   <span className="flex item-center justify-center"><i className={`bx bx-cloud text-xl mr-2`}></i> Save</span>
+                        }
+                    </button>
+                    <button 
+                        onClick={() => setPreviewEnable(prevState => !prevState)}
+                        className="text-gray-500 text-blue-500 border py-1 w-24 rounded border-blue-500 ml-4 focus:outline-none hover:bg-blue-500 hover:text-white">
+                        {
+                            isPreviewEnable === true ? 
+                            <span className="flex item-center justify-center"><i className={`bx bx-edit-alt text-xl mr-1`}></i> Write</span>
+                            :   <span className="flex item-center justify-center"><i className={`bx bx-bullseye text-xl mr-1`}></i> Preview</span>
                         }
                     </button>
                 </div>
             </div>
             <div className="m-auto w-full max-w-3xl">
                 <div className="mt-2">
-                    <EditorContainer
-                        title={title}
-                        content={content}
-                        setTitle={setTitle}
-                        setContent={setContent}
-                    />
+                    {
+                        isPreviewEnable ?
+                            <PreviewContainer 
+                                title={title}
+                                content={content}
+                            />
+                        :
+                        <EditorContainer
+                            title={title}
+                            content={content}
+                            setTitle={setTitle}
+                            setContent={setContent}
+                        />
+                    }
                 </div>
             </div>
         </div>
