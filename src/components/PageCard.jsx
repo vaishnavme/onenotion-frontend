@@ -31,7 +31,7 @@ export const PageCard = ({page, deletePageHandler, sharePageHandler, publicPage,
                 </div>
             }
         </div>
-        <Link to={`/edit-page/${page._id}`}>
+        <Link to={`/draft/${page._id}`}>
             <div className="px-4 pb-4 rounded-md">
                 <div className="text-3xl font-bold my-1 note-title">{page.title}</div>
                 <div className="shortPage">{page.content}</div>
