@@ -37,13 +37,13 @@ export default function Page() {
             {isLoading && <Loader/>}
             {pageError && <div className="font-semibold text-center">{pageError}</div>}
             <div className="text-sm font-medium my-3">{pageData.date}</div>
-            {/* {
+            {
                 pageData &&
                 <PreviewContainer 
                     title={pageData.title}
                     content={pageData.content}
                 />
-            } */}
+            }
         </div>
     )
 }

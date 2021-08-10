@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { getSharedPages } from "./features/shared/sharedSlice";
 import { getUserPages } from "./features/notions/notionSlice";
-import { Login, SignUp, Account, Home, NewPage, Page, Shared, CreatePage } from "./features";
+import { Login, SignUp, Account, Home, Page, Shared, CreatePage } from "./features";
 import { Navbar, PrivateRoute } from "./components";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
