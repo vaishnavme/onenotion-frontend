@@ -33,15 +33,14 @@ export default function Page() {
         <div className="m-auto w-full max-w-3xl my-4 p-4">
             {isLoading && <Loader/>}
             {
-                pageData === null
-                ?   <div>Page is no longer avaliable</div>
-                :   <>
-                    <div className="text-sm font-medium my-3">{pageData?.date}</div>
-                    <PreviewContainer 
-                        title={pageData.title}
-                        content={pageData.content}
-                    />
-                </>
+                pageData &&
+                    <>
+                        <div className="text-sm font-medium my-3">{pageData?.date}</div>
+                        <PreviewContainer 
+                            title={pageData.title}
+                            content={pageData.content}
+                        />
+                    </>
             }
 
             <ErrorToast 

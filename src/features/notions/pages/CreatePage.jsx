@@ -102,13 +102,13 @@ export default function CreatePage() {
                         />
                     }
                 </div>
+                {
+                    <ErrorToast 
+                        setMessage={setErrorMessage}
+                        message={errorMessage}
+                    />
+                }
             </div>
-            {
-                <ErrorToast 
-                    setMessage={setErrorMessage}
-                    message={errorMessage}
-                />
-            }
         </div>
     )
 }
