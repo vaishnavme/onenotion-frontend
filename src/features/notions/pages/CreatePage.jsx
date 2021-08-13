@@ -8,7 +8,6 @@ import { BASE_URL } from "../../../api/api";
 
 export default function CreatePage() {
     const { pageStatus, currentPage } = useSelector(state => state.notion);
-    const { authUserToken } = useSelector(state => state.auth);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [isPreviewEnable, setPreviewEnable] = useState(false);
@@ -37,7 +36,7 @@ export default function CreatePage() {
 
 
     useEffect(() => {
-        if(pageId && location.pathname.includes('/draft') && authUserToken) {
+        if(pageId && location.pathname.includes('/draft')) {
             (async () => {
                 try {
                     const response = await axios.get(`${BASE_URL}/pages/${pageId}`)
@@ -49,7 +48,7 @@ export default function CreatePage() {
                 }
             })();
         } 
-    },[location, pageId, authUserToken])
+    },[location, pageId])
 
     useEffect(() => {
         if(currentPage !== null) {

@@ -63,7 +63,7 @@ export const authSlice = createSlice({
             localStorage.setItem("isAuthenticated", JSON.stringify(true));
             localStorage.setItem("authUser", JSON.stringify(user));
             localStorage.setItem("authUserToken", JSON.stringify(token));
-            axios.defaults.headers.common["Authorization"] = token
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         },
         [loginUser.rejected]: (state) => {
             state.status = "error"
@@ -81,7 +81,7 @@ export const authSlice = createSlice({
             localStorage.setItem("authUser", JSON.stringify(user));
             localStorage.setItem("authUserToken", JSON.stringify(token));
             localStorage.setItem("isAuthenticated", JSON.stringify(true));
-            axios.defaults.headers.common["Authorization"] = token
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
         },
         [signupUser.rejected]: (state) => {
             state.status = "error"

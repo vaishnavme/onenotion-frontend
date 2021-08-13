@@ -13,10 +13,21 @@ function App() {
   const { pageStatus } = useSelector((state) => state.notion)
   const { sharedStatus } = useSelector((state) => state.share)
   const dispatch = useDispatch();
-  useEffect(() => {
-    if(status === "tokenReceived") {
-      axios.defaults.headers.common["Authorization"] = authUserToken;
+
+  axios.interceptors.request.use(function(config) {
+    if(authUserToken) {
+      config.headers.Authorization = `Bearer ${authUserToken}`;
     }
+    return config;
+  }, 
+    function(err) {
+      console.log('general request rejected', err.response.status)
+      return Promise.reject(err);
+    }
+  );
+
+
+  useEffect(() => {
     if(pageStatus === "idle" ) {
       dispatch(getUserPages())
     }
@@ -44,3 +55,6 @@ function App() {
 }
 
 export default App;
+
+
+
