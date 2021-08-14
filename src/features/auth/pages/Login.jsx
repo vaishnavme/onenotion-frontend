@@ -59,7 +59,9 @@ export default function Login() {
                     <button 
                         onClick={(e) => logInHandler(e)}
                         className="block text-center text-white bg-gray-800 p-3 duration-300 rounded-sm hover:bg-black w-full">
-                            {status === "loading" ? "Loading..." : "Login"}
+                            {status === "loading" ? 
+                            <i className="animate-spin bx bx-loader-alt font-thin"></i> 
+                            : "Login"}
                     </button>
                 </form>
                 <p className="mt-12 text-sm text-center font-normal text-gray-900"> Don't have an account? <Link to="/signup" className="text-black font-medium"> Create One </Link>  </p> 
