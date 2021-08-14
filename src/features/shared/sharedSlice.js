@@ -63,7 +63,7 @@ export const sharedSlice = createSlice({
         },
         [sharePage.fulfilled]: (state, action) => {
             state.publicPage.push(action.payload)
-            state.sharedStatus = "pageLoaded"
+            state.sharedStatus = "shared"
         },
         [sharePage.rejected]: (state) => {
             state.sharedStatus = "error"
