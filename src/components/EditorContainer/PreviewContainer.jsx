@@ -20,7 +20,7 @@ export const PreviewContainer = ({title, setTitle,content, editorStatus, setEdit
     return (
         <div>
             <TextareaAutosize
-                className="text-4xl w-full font-bold rounded focus:outline-none focus:border-transparent"
+                className="text-4xl w-full font-bold rounded focus:outline-none focus:border-transparent px-1"
                 placeholder="Title..."
                 maxLength={150}
                 rows={2}
@@ -28,7 +28,7 @@ export const PreviewContainer = ({title, setTitle,content, editorStatus, setEdit
                 onChange={(e) => setTitle(e.target.value)}
                 />
             <Toolbar editorStatus={editorStatus} setEditorStatus={setEditorStatus}/>
-            <div className={`${styles.markdown}`} dangerouslySetInnerHTML = {{__html: Markdown.render(content)}}></div>
+            <div className={`${styles.markdown} px-1 text-lg`} dangerouslySetInnerHTML = {{__html: Markdown.render(content)}}></div>
         </div>
     )
 }

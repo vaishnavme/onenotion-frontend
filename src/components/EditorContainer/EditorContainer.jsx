@@ -6,7 +6,7 @@ export const EditorContainer = ({title, content, setTitle, setContent, editorSta
     return (
         <Fragment>
             <TextareaAutosize
-                className="text-4xl w-full font-bold rounded focus:outline-none focus:border-transparent"
+                className="text-4xl w-full font-bold rounded focus:outline-none focus:border-transparent px-1"
                 placeholder="Title..."
                 maxLength={150}
                 rows={2}
@@ -20,7 +20,7 @@ export const EditorContainer = ({title, content, setTitle, setContent, editorSta
             <TextareaAutosize
                 value={content=== "" ? "" : content}
                 placeholder="Write your thoughts..."
-                className="w-full rounded focus:outline-none focus:border-transparent my-4"
+                className="w-full text-lg rounded focus:outline-none focus:border-transparent my-4 px-1"
                 onChange={(e) => setContent(e.target.value)}
             />         
         </Fragment>
