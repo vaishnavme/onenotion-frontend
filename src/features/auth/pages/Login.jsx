@@ -7,12 +7,18 @@ export default function Login() {
     const { status, isAuthenticated } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [loginCred, setLoginCred] = useState({});
 
-    const logInHandler = () => {
-        dispatch(loginUser({email,password})
-        )
+    const loginCredHandler = (e) => {
+        setLoginCred((prevState) => ({
+            ...prevState,
+            [e.target.name] : e.target.value
+        }))
+    }
+
+    const logInHandler = (e) => {
+        e.preventDefault();
+        dispatch(loginUser(loginCred))
     }
 
     useEffect(() => {
@@ -30,26 +36,28 @@ export default function Login() {
                 <h1 className="font-light text-4xl mt-3 text-center">Welcome Back</h1>
                 <form action="" className="mt-6">
                     <div className="my-5 text-sm">
-                        <label htmlFor="username" className="block text-black">Email</label>
+                        <label htmlFor="email" className="block text-black">Email</label>
                         <input 
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => loginCredHandler(e)}
                             type="text" 
-                            autoFocus id="username" 
+                            name="email"
+                            autoFocus id="email" 
                             className="rounded-sm font-normal px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" 
                             placeholder="Email" />
                     </div>
                     <div className="my-5 text-sm">
                         <label htmlFor="password" className="block text-black">Password</label>
                         <input 
-                            onChange={(e) => setPassword(e.target.value)}
-                            type="password" 
+                            onChange={(e) => loginCredHandler(e)}
+                            type="password"
+                            name="password" 
                             id="password" 
                             className="rounded-sm px-4 py-3 mt-3 focus:outline-none bg-gray-100 w-full" 
                             placeholder="Password" />
                     </div>
 
                     <button 
-                        onClick={(e) => {e.preventDefault(); logInHandler();}}
+                        onClick={(e) => logInHandler(e)}
                         className="block text-center text-white bg-gray-800 p-3 duration-300 rounded-sm hover:bg-black w-full">
                             {status === "loading" ? "Loading..." : "Login"}
                     </button>
