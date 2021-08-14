@@ -80,7 +80,10 @@ export default function CreatePage() {
                     <button
                         onClick={() => setModalVisible((prevState) => !prevState)}
                         className="rounded focus:outline-none text-gray-600 hover:bg-gray-50 py-1 px-2 mr-2">
-                        <span className="flex item-center justify-center"><i className={`bx bx-share-alt text-xl mr-2`}></i> Share Page</span>
+                        <span className="flex item-center justify-center">
+                            <i className={`bx bx-share-alt text-xl mr-2`}></i> 
+                            <span className="hidden md:block">Share Page</span>
+                        </span>
                     </button>
                     {
                         isModalVisible &&
@@ -91,19 +94,21 @@ export default function CreatePage() {
                                 value={pageLink}
                                 className="w-full bg-gray-50 py-3 px-1 my-4 focus:outline-none border border-gray-200 rounded"
                             />
-                            <button
-                                onClick={() => getLink()}
-                                className="text-blue-500 border-2 border-blue-500 px-2 rounded focus:outline-none border border-blue-500 mr-4">   
-                                <span className="flex item-center justify-center"><i className="bx bx-link text-xl mr-2"></i> Get Link</span>
-                            </button>
-                            <button onClick={() => navigator.clipboard.writeText(pageLink)}
-                                className="text-blue-500 border-2 border-blue-500 px-2 rounded focus:outline-none border border-blue-500">
-                                {
-                                    sharedStatus === "sharing" ?
-                                    <i className={`bx bx-loader-alt animate-spin text-xl mr-2`}></i>
-                                    :   <span className="flex item-center justify-center"><i className={`bx bx-copy-alt text-xl mr-2`}></i> Copy</span>
-                                }
-                            </button>
+                            <div className="flex flex-wrap">
+                                <button
+                                    onClick={() => getLink()}
+                                    className="text-blue-500 border-2 w-full md:w-24 mb-2 md:mb-0 border-blue-500 px-1 rounded focus:outline-none border border-blue-500 mr-0 md:mr-1">   
+                                    <span className="flex item-center justify-center"><i className="bx bx-link text-xl mr-1"></i> Get Link</span>
+                                </button>
+                                <button onClick={() => navigator.clipboard.writeText(pageLink)}
+                                    className="text-blue-500 border-2 w-full md:w-24 border-blue-500 px-1 rounded focus:outline-none border border-blue-500">
+                                    {
+                                        sharedStatus === "sharing" ?
+                                        <i className={`bx bx-loader-alt animate-spin text-xl mr-2`}></i>
+                                        :   <span className="flex item-center justify-center"><i className={`bx bx-copy-alt text-xl mr-1`}></i> Copy</span>
+                                    }
+                                </button>
+                            </div>
                         </div>
                     }
                     <button 
