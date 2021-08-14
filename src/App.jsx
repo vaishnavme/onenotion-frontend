@@ -44,7 +44,6 @@ function App() {
             if (sharedStatus === 'idle') {
                 dispatch(getSharedPages());
             }
-            console.log("called")
         }
     }, [authUserToken, dispatch, pageStatus, sharedStatus]);
 
