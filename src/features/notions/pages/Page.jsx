@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { PreviewContainer, Loader, ErrorToast } from "../../../components"
+import { PagePreview, Loader, ErrorToast } from "../../../components"
 import { BASE_URL } from "../../../api/api"
 
 export default function Page() {
@@ -36,7 +36,7 @@ export default function Page() {
                 pageData &&
                     <>
                         <div className="text-sm font-medium my-3">{pageData?.date}</div>
-                        <PreviewContainer 
+                        <PagePreview 
                             title={pageData.publicPage.title}
                             content={pageData.publicPage.content}
                         />
