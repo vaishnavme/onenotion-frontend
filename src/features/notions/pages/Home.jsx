@@ -27,7 +27,7 @@ export default function AllPages() {
                 </div>
             : 
             <div>
-                <div className="notesGrid my-4">
+                <div className="flex flex-wrap my-4">
                     { notion &&
                         notion.map((page) => (
                             <PageCard 

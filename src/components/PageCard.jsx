@@ -9,7 +9,7 @@ export const PageCard = ({page, deletePageHandler, sharePageHandler, publicPage,
     const plainTextContent = removeMarkdown(page.content)
 
     return (
-    <div className="rounded-md bg-white shadow-md">
+    <div className="rounded-md bg-white shadow-md max-w-sm m-2 md:m-4">
         <div className="relative flex justify-between bg-gray-50 p-2 items-center">
             <span className="text-xs font-semibold text-gray-700">{page.date}</span>
             <button onClick={() => setMenuVisible(prevState => !prevState)} className="bg-white px-1 rounded hover:bg-blue-50">
