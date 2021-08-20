@@ -1,111 +1,72 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { BASE_URL } from "../../api/api";
-
-export const getUserPages = createAsyncThunk("notion/getUserPages",
-    async() => {
-        try {
-            const response = await axios.get(`${BASE_URL}/pages`)
-            return response.data.pages
-        }
-        catch(error) {
-            console.log(error)
-        }
-    }
-)
-
-export const saveUserPage = createAsyncThunk("notion/saveUserPage",
-    async(page) => {
-        try {
-            const response = await axios.post(`${BASE_URL}/pages`, {page: page})
-            return response.data.savedPage
-        }
-        catch(error) {
-            console.log(error)
-        }
-    }
-)
-
-export const updateUserPage = createAsyncThunk("notion/updateUserPage",
-    async({pageUpdate, pageId}) => {
-        try {
-            const response = await axios.post(`${BASE_URL}/pages/${pageId}`, {pageUpdates: pageUpdate})
-            return response.data.updated
-        }
-        catch(error) {
-            console.log(error)
-        }
-    }
-)
-
-export const deleteUserPage = createAsyncThunk("notion/deleteUserPage",
-    async(pageId) => {
-        try {
-            const response = await axios.delete(`${BASE_URL}/pages/${pageId}`);
-            return response.data.pageId
-        }
-        catch(error) {
-            console.log(error)
-        }
-    }
-)
+import { createSlice } from '@reduxjs/toolkit';
+import {
+    getUserPages,
+    saveUserPage,
+    updateUserPage,
+    deleteUserPage
+} from './request';
 
 export const pageSlice = createSlice({
-    name: "notion",
+    name: 'notion',
     initialState: {
-        pageStatus: "idle",
+        pageStatus: 'idle',
         notion: [],
         currentPage: null,
+        error: null
     },
     reducers: {},
     extraReducers: {
         [getUserPages.pending]: (state) => {
-            state.pageStatus = "loading";
+            state.pageStatus = 'loading';
         },
         [getUserPages.fulfilled]: (state, action) => {
-            const { payload } = action;
-            state.notion = payload
-            state.pageStatus = "pageLoaded"
+            const { pages } = action.payload;
+            state.notion = pages;
+            state.pageStatus = 'pageLoaded';
         },
-        [getUserPages.rejected]: (state) => {
-            state.pageStatus = "error"
+        [getUserPages.rejected]: (state, action) => {
+            state.pageStatus = 'error';
+            state.error = action.payload;
         },
 
         [saveUserPage.pending]: (state) => {
-            state.pageStatus = "saving";
+            state.pageStatus = 'saving';
         },
         [saveUserPage.fulfilled]: (state, action) => {
-            state.notion.push(action.payload)
-            state.currentPage = action.payload
-            state.pageStatus = "saved"
+            const { savedPage } = action.payload;
+            state.notion.push(savedPage);
+            state.currentPage = savedPage;
+            state.pageStatus = 'saved';
         },
-        [saveUserPage.rejected]: (state) => {
-            state.pageStatus = "error"
+        [saveUserPage.rejected]: (state, action) => {
+            state.pageStatus = 'error';
+            state.error = action.payload;
         },
 
         [updateUserPage.pending]: (state) => {
-            state.pageStatus = "saving";
+            state.pageStatus = 'saving';
         },
         [updateUserPage.fulfilled]: (state) => {
-            state.pageStatus = "saved"
+            state.pageStatus = 'saved';
         },
-        [updateUserPage.rejected]: (state) => {
-            state.pageStatus = "error"
+        [updateUserPage.rejected]: (state, action) => {
+            state.pageStatus = 'error';
+            state.error = action.payload;
         },
 
         [deleteUserPage.pending]: (state) => {
-            state.pageStatus = "deleting";
+            state.pageStatus = 'deleting';
         },
         [deleteUserPage.fulfilled]: (state, action) => {
-            const { payload } = action;
-            state.notion.splice(
-                state.notion.findIndex((page) => page._id === payload),1)
-            state.pageStatus = "Fulfilled"
+            const { pageId } = action.payload;
+            state.notion = state.notion.filter((page) => page._id !== pageId);
+            state.pageStatus = 'Fulfilled';
         },
-        [deleteUserPage.rejected]: (state) => {
-            state.pageStatus = "error"
+        [deleteUserPage.rejected]: (state, action) => {
+            state.pageStatus = 'error';
+            state.error = action.payload;
         }
     }
-})
+});
 
 export default pageSlice.reducer;

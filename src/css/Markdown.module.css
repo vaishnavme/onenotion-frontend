@@ -1,8 +1,13 @@
 .markdown a {
-    color: #2563EB;
+    color: #2563eb;
     text-decoration: underline;
 }
-.markdown h1,h2,h3,h4,h5,h6 {
+.markdown h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 1rem auto;
     font-weight: 500;
 }
@@ -10,7 +15,7 @@
     margin: 1.2rem auto;
 }
 .markdown blockquote {
-    background-color: #FEF3C7;
+    background-color: #fef3c7;
     border-radius: 0.2rem;
     padding: 0.5rem;
 }
@@ -46,8 +51,8 @@
 }
 .markdown code {
     font-family: monospace;
-    color: #EF4444;
-    background-color: #FEF2F2;
+    color: #ef4444;
+    background-color: #fef2f2;
     padding: 1px;
     font-size: 14px;
 }
@@ -74,7 +79,8 @@
     vertical-align: middle;
     border-color: inherit;
 }
-.markdown table td, .markdown table th {
-    border: 1px solid #D1D5DB;
+.markdown table td,
+.markdown table th {
+    border: 1px solid #d1d5db;
     padding: 6px 13px;
 }

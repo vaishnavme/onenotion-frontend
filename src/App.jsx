@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSharedPages } from './features/shared/sharedSlice';
-import { getUserPages } from './features/notions/notionSlice';
-import { logOutUser } from "./features/auth/authSlice";
-import { Login, SignUp, Home, Page, Shared, CreatePage } from './features';
+import { getSharedPages } from './features/shared/request';
+import { getUserPages } from './features/notions/request';
+import { logOutUser } from './features/auth/authSlice';
+import { Login, SignUp, Home, Page, Shared, CreatePage } from './pages';
 import { Navbar, PrivateRoute } from './components';
 import axios from 'axios';
 import './css/App.css';
 
 function App() {
-    const { authUserToken, isAuthenticated } = useSelector((state) => state.auth);
+    const { authUserToken, isAuthenticated } = useSelector(
+        (state) => state.auth
+    );
     const { pageStatus } = useSelector((state) => state.notion);
     const { sharedStatus } = useSelector((state) => state.share);
     const dispatch = useDispatch();
@@ -27,13 +29,14 @@ function App() {
             return Promise.reject(err);
         }
     );
-    axios.interceptors.response.use((response) => response,
+    axios.interceptors.response.use(
+        (response) => response,
         (error) => {
             if (error?.response?.status === 401) {
-                dispatch(logOutUser())
+                dispatch(logOutUser());
             }
             return Promise.reject(error);
-        }       
+        }
     );
 
     useEffect(() => {

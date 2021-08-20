@@ -1,8 +1,15 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 import TextareaAutosize from 'react-autosize-textarea';
-import { Toolbar } from "./Toolbar";
+import { Toolbar } from './Toolbar';
 
-export const EditorContainer = ({title, content, setTitle, setContent, editorStatus, setEditorStatus}) => {
+export const EditorContainer = ({
+    title,
+    content,
+    setTitle,
+    setContent,
+    editorStatus,
+    setEditorStatus
+}) => {
     return (
         <Fragment>
             <TextareaAutosize
@@ -12,17 +19,17 @@ export const EditorContainer = ({title, content, setTitle, setContent, editorSta
                 rows={2}
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                />
+            />
             <Toolbar
                 editorStatus={editorStatus}
                 setEditorStatus={setEditorStatus}
             />
             <TextareaAutosize
-                value={content=== "" ? "" : content}
+                value={content === '' ? '' : content}
                 placeholder="Write your thoughts..."
                 className="w-full text-lg rounded focus:outline-none focus:border-transparent my-4 px-1"
                 onChange={(e) => setContent(e.target.value)}
-            />         
+            />
         </Fragment>
-    )
-}
+    );
+};
