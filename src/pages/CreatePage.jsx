@@ -8,6 +8,7 @@ import { BASE_URL } from '../api';
 import {
     EditorContainer,
     PreviewContainer,
+    GuideContainer,
     getTimeandData,
     ErrorToast,
     alreadyExist
@@ -178,7 +179,12 @@ export default function CreatePage() {
                             setEditorStatus={setEditorStatus}
                         />
                     )}
-                    {editorStatus === 'GUIDE' && <div>Guide</div>}
+                    {editorStatus === 'GUIDE' && (
+                        <GuideContainer
+                            editorStatus={editorStatus}
+                            setEditorStatus={setEditorStatus}
+                        />
+                    )}
                 </div>
                 {
                     <ErrorToast

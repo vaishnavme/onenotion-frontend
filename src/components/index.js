@@ -2,6 +2,7 @@ export { Navbar } from './Navbar';
 export { PrivateRoute } from './PrivateRoute';
 export { EditorContainer } from './EditorContainer/EditorContainer';
 export { PreviewContainer } from './EditorContainer/PreviewContainer';
+export { GuideContainer } from './EditorContainer/GuideContainer';
 export { Toolbar } from './EditorContainer/Toolbar';
 export { PagePreview } from './PagePreview';
 export { PageCard } from './PageCard';

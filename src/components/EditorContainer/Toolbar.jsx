@@ -15,6 +15,13 @@ export const Toolbar = ({ editorStatus, setEditorStatus }) => {
                 currentStatus={editorStatus}
                 onClickHandler={setEditorStatus}
             />
+            <ToolBarButtons
+                label={'Guide'}
+                icon={'bxl-markdown'}
+                updateStatus={'GUIDE'}
+                currentStatus={editorStatus}
+                onClickHandler={setEditorStatus}
+            />
         </div>
     );
 };
