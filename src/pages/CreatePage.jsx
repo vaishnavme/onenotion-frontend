@@ -8,6 +8,7 @@ import { BASE_URL } from '../api';
 import {
     EditorContainer,
     PreviewContainer,
+    GuideContainer,
     getTimeandData,
     ErrorToast,
     alreadyExist
@@ -48,11 +49,15 @@ export default function CreatePage() {
     };
 
     const getLink = () => {
-        !alreadyExist(publicPage, pageId) && dispatch(sharePage(pageId));
-        const url = window.location.origin;
-        const link = url + `/public/` + pageId;
-        setPageLink(link);
-        navigator.clipboard.writeText(pageLink);
+        if (location.pathname.includes('/draft')) {
+            !alreadyExist(publicPage, pageId) && dispatch(sharePage(pageId));
+            const url = window.location.origin;
+            const link = url + `/public/` + pageId;
+            setPageLink(link);
+            navigator.clipboard.writeText(pageLink);
+        } else {
+            setErrorMessage('Please write and save page');
+        }
     };
 
     useEffect(() => {
@@ -108,11 +113,10 @@ export default function CreatePage() {
                             <div className="flex flex-wrap">
                                 <button
                                     onClick={() => getLink()}
-                                    className="text-blue-500 border-2 w-full md:w-24 mb-2 md:mb-0 border-blue-500 px-1 rounded focus:outline-none border border-blue-500 mr-0 md:mr-1"
+                                    className="text-blue-500 border-2 w-full md:w-28 mb-2 md:mb-0 border-blue-500 px-1 py-1 rounded focus:outline-none border border-blue-500 mr-0 md:mr-1"
                                 >
-                                    <span className="flex item-center justify-center">
-                                        <i className="bx bx-link text-xl mr-1"></i>{' '}
-                                        Get Link
+                                    <span className="flex text-sm font-medium item-center justify-center">
+                                        Generate Link
                                     </span>
                                 </button>
                                 <button
@@ -126,11 +130,8 @@ export default function CreatePage() {
                                             className={`bx bx-loader-alt animate-spin text-xl mr-2`}
                                         ></i>
                                     ) : (
-                                        <span className="flex item-center justify-center">
-                                            <i
-                                                className={`bx bx-copy-alt text-xl mr-1`}
-                                            ></i>{' '}
-                                            Copy
+                                        <span className="flex text-sm font-medium item-center justify-center">
+                                            Copy link
                                         </span>
                                     )}
                                 </button>
@@ -178,7 +179,12 @@ export default function CreatePage() {
                             setEditorStatus={setEditorStatus}
                         />
                     )}
-                    {editorStatus === 'GUIDE' && <div>Guide</div>}
+                    {editorStatus === 'GUIDE' && (
+                        <GuideContainer
+                            editorStatus={editorStatus}
+                            setEditorStatus={setEditorStatus}
+                        />
+                    )}
                 </div>
                 {
                     <ErrorToast
