@@ -44,7 +44,8 @@ export default function CreatePage() {
         if (pageId && location.pathname.includes('/draft')) {
             dispatch(updateUserPage({ pageUpdate: page, pageId: pageId }));
         } else {
-            dispatch(saveUserPage(page));
+            const response = dispatch(saveUserPage(page));
+            console.log(response);
         }
     };
 
