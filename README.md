@@ -1,6 +1,6 @@
 # OneNotion - Markdown supprted note app
 
-#### [Live](https://onenotion-git-develop-vaishnavme.vercel.app/)  [https://onenotion-git-develop-vaishnavme.vercel.app/](https://onenotion-git-develop-vaishnavme.vercel.app/)
+#### [Live](https://onenotion.vercel.app/)  [https://onenotion.vercel.app/](https://onenotion.vercel.app/)
 
 OneNotion
 
