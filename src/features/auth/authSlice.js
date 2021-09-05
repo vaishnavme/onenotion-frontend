@@ -35,7 +35,6 @@ export const authSlice = createSlice({
         },
         [loginUserWithCredentials.fulfilled]: (state, action) => {
             const { user, token } = action.payload;
-            console.log(action.payload);
             state.authUser = user;
             state.authUserToken = token;
             state.status = 'tokenReceived';
