@@ -2,6 +2,12 @@ This is a guide to help you create rich notes on OneNotion.
 
 OneNotion supports rich markdown features.
 
+# Features
+
+-   Create, Edit and Delete Note.
+-   Share note as web page.
+-   Markdown support.
+
 # Headers
 
 Hashnode supports Atx-style headers. Use 1-6 hash characters at the start of the
