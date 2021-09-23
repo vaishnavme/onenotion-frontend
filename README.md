@@ -16,7 +16,7 @@ OneNotion
 - Markdown Support
 - Create Edit and Share as Web Page (Public Page)
 - Responsive Design
-- [Public Page Example](https://onenotion-git-develop-vaishnavme.vercel.app/public/60f6f0d0eb934a0015969feb)
+- [Public Page Example](https://onenotion.vercel.app/public/60f6f0d0eb934a0015969feb)
 
 ### Backend
 
